@@ -12,7 +12,7 @@
 # Uncomment DYNLIB if you want libs installed to vendor for oreo+ and system for anything older
 # Uncomment DEBUG if you want full debug logs (saved to /sdcard)
 MINAPI=31
-MAXAPI=35
+#MAXAPI=35
 #DYNLIB=true
 #DEBUG=true
 
