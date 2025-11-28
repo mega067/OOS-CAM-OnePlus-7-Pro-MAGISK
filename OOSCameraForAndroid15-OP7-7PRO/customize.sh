@@ -11,7 +11,7 @@
 # Uncomment and change 'MINAPI' and 'MAXAPI' to the minimum and maximum android version for your mod
 # Uncomment DYNLIB if you want libs installed to vendor for oreo+ and system for anything older
 # Uncomment DEBUG if you want full debug logs (saved to /sdcard)
-MINAPI=31
+MINAPI=35
 #MAXAPI=35
 #DYNLIB=true
 #DEBUG=true
@@ -34,7 +34,7 @@ REPLACE_EXAMPLE="
 
 # Construct your own list here
 REPLACE="
-/system/product/app/Camera
+/vendor/etc
 "
 
 ##########################################################################################
@@ -59,6 +59,10 @@ set_permissions() {
   # set_perm $MODPATH/system/lib/libart.so 0 0 0644
   # set_perm /data/local/tmp/file.txt 0 0 644
 # set_perm /system/system_ext/priv-app/WallpaperPickerGoogleRelease/WallpaperPickerGoogleRelease.apk 0 0 644
+
+  # Establece el contexto correcto para las reglas de sepolicy
+  set_perm_recursive $MODPATH/sepolicy u:object_r:system_file:s0 0 0 0755 0644
+
 }
 
 ##########################################################################################

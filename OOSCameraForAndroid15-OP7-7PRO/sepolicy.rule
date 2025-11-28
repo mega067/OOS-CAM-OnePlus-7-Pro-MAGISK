@@ -1,13 +1,15 @@
-# Permitir a la app de cámara (priv_app) acceder a los archivos y dispositivos del DSP de Qualcomm.
-# Esto es CRÍTICO para el procesamiento de imagen/video (Modo Noche, Retrato, EIS, etc.).
-allow priv_app adsprpcd_file dir { search getattr open read };
-allow priv_app vendor_xdsp_device chr_file { read write open ioctl };
+# Permite a las aplicaciones privilegiadas (priv_app) leer archivos de sysfs para la batería.
+# Esto es necesario para que la cámara pueda leer la temperatura de la batería.
+allow priv_app vendor_sysfs_battery_supply file { read open getattr }
 
-# Permitir leer la frecuencia de la GPU para optimización de rendimiento.
-allow priv_app vendor_sysfs_kgsl file read;
+# Permite a las aplicaciones privilegiadas leer archivos de sysfs para el subsistema de gráficos (kgsl).
+# Esto es necesario para la detección de escenas y otras optimizaciones.
+allow priv_app vendor_sysfs_kgsl file { read open getattr }
 
-# Permitir leer la temperatura de la batería para protección contra sobrecalentamiento.
-allow priv_app vendor_sysfs_battery_supply file read;
-
-# Permitir a la app de cámara (priv_app) buscar y leer archivos del DSP.
-allow priv_app adsp_file dir { search getattr open read };
+# Permite a las aplicaciones privilegiadas acceder al procesador de señal digital (DSP).
+# Esencial para el procesamiento de imágenes y la detección de escenas.
+allow priv_app vendor_xdsp_device chr_file { read write open ioctl getattr }
+allow priv_app adspd_socket dir { search }
+allow priv_app adsp_file dir { search }
+allow priv_app adsp_file file { read open getattr }
+allow priv_app adsp_file lnk_file { read getattr }
