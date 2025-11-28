@@ -8,3 +8,6 @@ allow priv_app vendor_sysfs_kgsl file read;
 
 # Permitir leer la temperatura de la batería para protección contra sobrecalentamiento.
 allow priv_app vendor_sysfs_battery_supply file read;
+
+# Permitir a la app de cámara (priv_app) buscar y leer archivos del DSP.
+allow priv_app adsp_file dir { search getattr open read };
