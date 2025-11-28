@@ -423,12 +423,17 @@
     :goto_0
     const/4 p1, 0x0
 
-    if-nez p0, :cond_1
+    if-eqz p0, :cond_1_null
 
+    invoke-virtual {p0}, Ljava/lang/String;->isEmpty()Z
+    move-result v1
+    if-eqz v1, :cond_1
+
+    :cond_1_null
     .line 227
     sget-object p0, Lcom/oneplus/base/ScreenSize;->TAG:Ljava/lang/String;
 
-    const-string v0, "getCutoutPathDataHeight() - spec is null"
+    const-string v0, "getCutoutPathDataHeight() - spec is null or empty"
 
     invoke-static {p0, v0}, Lcom/oneplus/base/Log;->w(Ljava/lang/String;Ljava/lang/String;)V
 
