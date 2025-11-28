@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <vector android:height="24.0dip" android:width="24.0dip" android:viewportWidth="24.0" android:viewportHeight="24.0">
+            <path android:fillColor="@color/capture_modes_panel_icon_selected" android:pathData="M11.8096,14.4759C13.072,14.4759 14.0954,13.4526 14.0954,12.1902C14.0954,10.9279 13.072,9.9045 11.8096,9.9045C10.5473,9.9045 9.5239,10.9279 9.5239,12.1902C9.5239,13.4526 10.5473,14.4759 11.8096,14.4759Z" />
+            <path android:fillColor="@color/capture_modes_panel_icon_selected" android:pathData="M6.7627,3.6881L5.7025,2.6279L2.4646,5.8658L3.5248,6.926L6.7627,3.6881Z" />
+            <path android:fillColor="@color/capture_modes_panel_icon_selected" android:pathData="M13.2705,3.6898L12.2103,2.6296L2.4741,12.3659L3.5343,13.4261L13.2705,3.6898Z" />
+            <path android:fillColor="@color/capture_modes_panel_icon_selected" android:pathData="M17.054,20.4579L18.1142,21.5181L21.3521,18.2801L20.2919,17.22L17.054,20.4579Z" />
+            <path android:fillColor="@color/capture_modes_panel_icon_selected" android:pathData="M10.5544,20.4488L11.6145,21.509L21.3508,11.7728L20.2906,10.7126L10.5544,20.4488Z" />
+        </vector>
+    </item>
+    <item>
+        <vector android:height="24.0dip" android:width="24.0dip" android:viewportWidth="24.0" android:viewportHeight="24.0">
+            <path android:fillColor="@color/capture_modes_panel_icon" android:pathData="M11.8096,14.4759C13.072,14.4759 14.0954,13.4526 14.0954,12.1902C14.0954,10.9279 13.072,9.9045 11.8096,9.9045C10.5473,9.9045 9.5239,10.9279 9.5239,12.1902C9.5239,13.4526 10.5473,14.4759 11.8096,14.4759Z" />
+            <path android:fillColor="@color/capture_modes_panel_icon" android:pathData="M6.7627,3.6881L5.7025,2.6279L2.4646,5.8658L3.5248,6.926L6.7627,3.6881Z" />
+            <path android:fillColor="@color/capture_modes_panel_icon" android:pathData="M13.2705,3.6898L12.2103,2.6296L2.4741,12.3659L3.5343,13.4261L13.2705,3.6898Z" />
+            <path android:fillColor="@color/capture_modes_panel_icon" android:pathData="M17.054,20.4579L18.1142,21.5181L21.3521,18.2801L20.2919,17.22L17.054,20.4579Z" />
+            <path android:fillColor="@color/capture_modes_panel_icon" android:pathData="M10.5544,20.4488L11.6145,21.509L21.3508,11.7728L20.2906,10.7126L10.5544,20.4488Z" />
+        </vector>
+    </item>
+</selector>

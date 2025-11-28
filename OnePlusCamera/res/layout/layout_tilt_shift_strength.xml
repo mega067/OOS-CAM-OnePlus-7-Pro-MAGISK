@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/tilt_shift_strength_wheel_icon_container" android:visibility="gone" android:layout_width="?oos11SubPanelItemIconContainerWidthHeight" android:layout_height="?oos11SubPanelItemIconContainerWidthHeight" android:layout_marginLeft="?oos11SubPanelPaddingStartEnd" android:layout_marginBottom="?oos11FilterIconMarginBottom" android:layout_alignParentLeft="true" android:layout_alignParentBottom="true" android:layoutDirection="ltr">
+        <View android:id="@id/background" android:background="@drawable/tangerine_strength_wheel_icon_background" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        <ImageView android:id="@id/tilt_shift_strength_wheel_icon" android:layout_width="?oos11SettingIconSize" android:layout_height="?oos11SettingIconSize" android:src="@drawable/tangerine_strength_wheel_icon_png" android:scaleType="center" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/tilt_shift_strength_wheel_panel_container" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="?captureBarSize" android:layout_alignParentBottom="true" android:alpha="0.0">
+        <TextView android:textSize="?tangerineStrengthWheelTextSize" android:textStyle="normal" android:textColor="@color/op_control_icon_color_active_dark" android:id="@id/tilt_shift_strength_wheel_text" android:layout_width="wrap_content" android:layout_height="?tangerineStrengthWheelTextHeight" android:layout_marginTop="?tangerineStrengthWheelTextMarginTop" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" android:fontFamily="" />
+        <com.oneplus.widget.Wheel android:id="@id/tilt_shift_strength_wheel_panel" android:paddingLeft="?tangerineStrengthWheelPaddingLeftRight" android:paddingRight="?tangerineStrengthWheelPaddingLeftRight" android:layout_width="fill_parent" android:layout_height="?tangerineStrengthWheelSize" android:layout_marginTop="?tangerineStrengthWheelPaddingTop" android:layout_alignParentTop="true" />
+    </RelativeLayout>
+</RelativeLayout>
