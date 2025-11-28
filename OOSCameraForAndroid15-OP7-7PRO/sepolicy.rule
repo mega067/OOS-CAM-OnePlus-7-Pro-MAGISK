@@ -1,0 +1,10 @@
+# Permitir a la app de cámara (priv_app) acceder a los archivos y dispositivos del DSP de Qualcomm.
+# Esto es CRÍTICO para el procesamiento de imagen/video (Modo Noche, Retrato, EIS, etc.).
+allow priv_app adsprpcd_file dir { search getattr open read };
+allow priv_app vendor_xdsp_device chr_file { read write open ioctl };
+
+# Permitir leer la frecuencia de la GPU para optimización de rendimiento.
+allow priv_app vendor_sysfs_kgsl file read;
+
+# Permitir leer la temperatura de la batería para protección contra sobrecalentamiento.
+allow priv_app vendor_sysfs_battery_supply file read;
