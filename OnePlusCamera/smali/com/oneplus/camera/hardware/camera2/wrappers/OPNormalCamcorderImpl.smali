@@ -5683,6 +5683,8 @@
     .line 828
     iget-object p0, p0, Lcom/oneplus/camera/hardware/camera2/wrappers/OPNormalCamcorderImpl;->TAG:Ljava/lang/String;
 
+    
+    
     const-string p1, "onSelectCaptureSessionType() - Hyper image stabilization is enabled"
 
     invoke-static {p0, p1}, Lcom/oneplus/base/Log;->d(Ljava/lang/String;Ljava/lang/String;)V
@@ -5742,6 +5744,8 @@
     new-instance p2, Ljava/lang/StringBuilder;
 
     invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/4 p1, 0x0
 
     const-string v0, "onSelectCaptureSessionType() - Change session type to "
 
