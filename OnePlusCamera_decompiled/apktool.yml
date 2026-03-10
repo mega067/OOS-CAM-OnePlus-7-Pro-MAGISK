@@ -1,0 +1,110 @@
+version: 2.9.3
+apkFileName: OnePlusCamera.apk
+isFrameworkApk: false
+usesFramework:
+  ids:
+  - 1
+  tag: null
+sdkInfo:
+  minSdkVersion: 30
+  targetSdkVersion: 32
+packageInfo:
+  forcedPackageId: 127
+  renameManifestPackage: null
+versionInfo:
+  versionCode: 26231787
+  versionName: 6.4.66
+resourcesAreCompressed: false
+sharedLibrary: false
+sparseResources: false
+unknownFiles:
+  com/oneplus/compat/telephony/TelephonyManagerNative.uau: 8
+doNotCompress:
+- resources.arsc
+- META-INF/androidx.activity_activity.version
+- META-INF/androidx.animation_animation.version
+- META-INF/androidx.appcompat_appcompat-resources.version
+- META-INF/androidx.appcompat_appcompat.version
+- META-INF/androidx.arch.core_core-runtime.version
+- META-INF/androidx.cardview_cardview.version
+- META-INF/androidx.common_common.version
+- META-INF/androidx.coordinatorlayout_coordinatorlayout.version
+- META-INF/androidx.core_core.version
+- META-INF/androidx.cursoradapter_cursoradapter.version
+- META-INF/androidx.customview_customview.version
+- META-INF/androidx.drawerlayout_drawerlayout.version
+- META-INF/androidx.dynamicanimation_dynamicanimation.version
+- META-INF/androidx.exifinterface_exifinterface.version
+- META-INF/androidx.fragment_fragment.version
+- META-INF/androidx.guideline_guideline.version
+- META-INF/androidx.interpolator_interpolator.version
+- META-INF/androidx.lifecycle_lifecycle-livedata-core.version
+- META-INF/androidx.lifecycle_lifecycle-livedata.version
+- META-INF/androidx.lifecycle_lifecycle-runtime.version
+- META-INF/androidx.lifecycle_lifecycle-viewmodel.version
+- META-INF/androidx.loader_loader.version
+- META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version
+- META-INF/androidx.material_components_materialwidgets.version
+- META-INF/androidx.preference_preference.version
+- META-INF/androidx.recyclerview_recyclerview.version
+- META-INF/androidx.savedstate_savedstate.version
+- META-INF/androidx.swiperefreshlayout_swiperefreshlayout.version
+- META-INF/androidx.transition_transition.version
+- META-INF/androidx.vectordrawable_vectordrawable-animated.version
+- META-INF/androidx.vectordrawable_vectordrawable.version
+- META-INF/androidx.versionedparcelable_versionedparcelable.version
+- META-INF/androidx.viewpager2_viewpager2.version
+- META-INF/androidx.viewpager_viewpager.version
+- META-INF/androidx.webkit_webkit.version
+- png
+- jpg
+- res/raw/anc_merged_model
+- ogg
+- lib/arm64-v8a/libAncHumBokeh-jni.so
+- lib/arm64-v8a/libAncHumBokeh.so
+- lib/arm64-v8a/libBokehPre.so
+- lib/arm64-v8a/libCameraNext.so
+- lib/arm64-v8a/libOnePlusBlurPreviewJNI.so
+- lib/arm64-v8a/libOnePlusCamera.so
+- lib/arm64-v8a/libQuickSnapshot.so
+- lib/arm64-v8a/libSNPE.so
+- lib/arm64-v8a/libTiltShiftPre.so
+- lib/arm64-v8a/libTiltShiftPreviewJNI.so
+- lib/arm64-v8a/libaiseg.so
+- lib/arm64-v8a/libancbase_rt_bokeh.so
+- lib/arm64-v8a/libarcsoft_lensstaindetection.so
+- lib/arm64-v8a/libarcsoft_pet_detection.so
+- lib/arm64-v8a/libarcsoft_videoautozoom.so
+- lib/arm64-v8a/libc++.so
+- lib/arm64-v8a/libc++_shared.so
+- lib/arm64-v8a/libcalculator_domains_skel.so
+- lib/arm64-v8a/libcalculator_skel.so
+- lib/arm64-v8a/libcamera_metadata.so
+- lib/arm64-v8a/libcutils.so
+- lib/arm64-v8a/libcvface_api.so
+- lib/arm64-v8a/libhta.so
+- lib/arm64-v8a/libion.so
+- lib/arm64-v8a/libjni_cvface_api.so
+- lib/arm64-v8a/libjnistblur_preview_api.so
+- lib/arm64-v8a/libjpeg.so
+- lib/arm64-v8a/liblibscene.so
+- lib/arm64-v8a/libmorpho_buildprop_util.so
+- lib/arm64-v8a/libmorpho_memory_allocator.so
+- lib/arm64-v8a/libmorpho_panorama_gp3.so
+- lib/arm64-v8a/libmorpho_panorama_viewer.so
+- lib/arm64-v8a/libmorpho_sensor_fusion.so
+- lib/arm64-v8a/libmpbase.so
+- lib/arm64-v8a/libopbaselib.so
+- lib/arm64-v8a/libsnpe_adsp.so
+- lib/arm64-v8a/libsnpe_dsp_domains.so
+- lib/arm64-v8a/libsnpe_dsp_domains_skel.so
+- lib/arm64-v8a/libsnpe_dsp_domains_system.so
+- lib/arm64-v8a/libsnpe_dsp_domains_v2.so
+- lib/arm64-v8a/libsnpe_dsp_domains_v2_system.so
+- lib/arm64-v8a/libsnpe_dsp_skel.so
+- lib/arm64-v8a/libsnpe_dsp_v65_domains_v2_skel.so
+- lib/arm64-v8a/libsnpe_dsp_v66_domains_v2_skel.so
+- lib/arm64-v8a/libsnpe_loader.so
+- lib/arm64-v8a/libstblur_preview_api.so
+- lib/arm64-v8a/libsymphony-cpu.so
+- lib/arm64-v8a/libyuv.so

@@ -1,0 +1,400 @@
+.class public final Lcom/oneplus/camera/next/hardware/Camcorder$Profile;
+.super Ljava/lang/Object;
+.source "Camcorder.kt"
+
+# interfaces
+.implements Ljava/lang/Cloneable;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/oneplus/camera/next/hardware/Camcorder;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "Profile"
+.end annotation
+
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/oneplus/camera/next/hardware/Camcorder$Profile$Companion;
+    }
+.end annotation
+
+.annotation runtime Lkotlin/Metadata;
+    bv = {
+        0x1,
+        0x0,
+        0x3
+    }
+    d1 = {
+        "\u0000\u001a\n\u0002\u0018\u0002\n\u0002\u0010\u001a\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0010\u0008\n\u0002\u0008\u001f\u0018\u0000 %2\u00020\u0001:\u0001%B\u000f\u0008\u0016\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004B\u0005\u00a2\u0006\u0002\u0010\u0005J\u0008\u0010$\u001a\u00020\u0000H\u0014R\u001a\u0010\u0006\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\u0008\u0008\u0010\t\"\u0004\u0008\n\u0010\u000bR\u001a\u0010\u000c\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\u0008\r\u0010\t\"\u0004\u0008\u000e\u0010\u000bR\u001a\u0010\u000f\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\u0008\u0010\u0010\t\"\u0004\u0008\u0011\u0010\u000bR\u001a\u0010\u0012\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\u0008\u0013\u0010\t\"\u0004\u0008\u0014\u0010\u000bR\u001a\u0010\u0015\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\u0008\u0016\u0010\t\"\u0004\u0008\u0017\u0010\u000bR\u001a\u0010\u0018\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\u0008\u0019\u0010\t\"\u0004\u0008\u001a\u0010\u000bR\u001a\u0010\u001b\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\u0008\u001c\u0010\t\"\u0004\u0008\u001d\u0010\u000bR\u001a\u0010\u001e\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\u0008\u001f\u0010\t\"\u0004\u0008 \u0010\u000bR\u001a\u0010!\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\u0008\"\u0010\t\"\u0004\u0008#\u0010\u000b\u00a8\u0006&"
+    }
+    d2 = {
+        "Lcom/oneplus/camera/next/hardware/Camcorder$Profile;",
+        "",
+        "camcorderProfile",
+        "Landroid/media/CamcorderProfile;",
+        "(Landroid/media/CamcorderProfile;)V",
+        "()V",
+        "audioBitRate",
+        "",
+        "getAudioBitRate",
+        "()I",
+        "setAudioBitRate",
+        "(I)V",
+        "audioChannels",
+        "getAudioChannels",
+        "setAudioChannels",
+        "audioEncoder",
+        "getAudioEncoder",
+        "setAudioEncoder",
+        "audioSampleRate",
+        "getAudioSampleRate",
+        "setAudioSampleRate",
+        "fileFormat",
+        "getFileFormat",
+        "setFileFormat",
+        "videoBitRate",
+        "getVideoBitRate",
+        "setVideoBitRate",
+        "videoEncoder",
+        "getVideoEncoder",
+        "setVideoEncoder",
+        "videoFrameHeight",
+        "getVideoFrameHeight",
+        "setVideoFrameHeight",
+        "videoFrameWidth",
+        "getVideoFrameWidth",
+        "setVideoFrameWidth",
+        "clone",
+        "Companion",
+        "CameraNext_release"
+    }
+    k = 0x1
+    mv = {
+        0x1,
+        0x1,
+        0x10
+    }
+.end annotation
+
+
+# static fields
+.field public static final Companion:Lcom/oneplus/camera/next/hardware/Camcorder$Profile$Companion;
+
+
+# instance fields
+.field private volatile audioBitRate:I
+
+.field private volatile audioChannels:I
+
+.field private volatile audioEncoder:I
+
+.field private volatile audioSampleRate:I
+
+.field private volatile fileFormat:I
+
+.field private volatile videoBitRate:I
+
+.field private volatile videoEncoder:I
+
+.field private volatile videoFrameHeight:I
+
+.field private volatile videoFrameWidth:I
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 2
+
+    new-instance v0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile$Companion;
+
+    const/4 v1, 0x0
+
+    invoke-direct {v0, v1}, Lcom/oneplus/camera/next/hardware/Camcorder$Profile$Companion;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+
+    sput-object v0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->Companion:Lcom/oneplus/camera/next/hardware/Camcorder$Profile$Companion;
+
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .locals 1
+
+    .line 229
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    const/4 v0, 0x3
+
+    .line 422
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioEncoder:I
+
+    const/4 v0, 0x2
+
+    .line 434
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->fileFormat:I
+
+    .line 446
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoEncoder:I
+
+    return-void
+.end method
+
+.method public constructor <init>(Landroid/media/CamcorderProfile;)V
+    .locals 1
+
+    const-string v0, "camcorderProfile"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkParameterIsNotNull(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 390
+    invoke-direct {p0}, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;-><init>()V
+
+    .line 392
+    iget v0, p1, Landroid/media/CamcorderProfile;->audioBitRate:I
+
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioBitRate:I
+
+    .line 393
+    iget v0, p1, Landroid/media/CamcorderProfile;->audioChannels:I
+
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioChannels:I
+
+    .line 394
+    iget v0, p1, Landroid/media/CamcorderProfile;->audioCodec:I
+
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioEncoder:I
+
+    .line 395
+    iget v0, p1, Landroid/media/CamcorderProfile;->audioSampleRate:I
+
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioSampleRate:I
+
+    .line 396
+    iget v0, p1, Landroid/media/CamcorderProfile;->fileFormat:I
+
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->fileFormat:I
+
+    .line 397
+    iget v0, p1, Landroid/media/CamcorderProfile;->videoBitRate:I
+
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoBitRate:I
+
+    .line 398
+    iget v0, p1, Landroid/media/CamcorderProfile;->videoCodec:I
+
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoEncoder:I
+
+    .line 399
+    iget v0, p1, Landroid/media/CamcorderProfile;->videoFrameHeight:I
+
+    iput v0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoFrameHeight:I
+
+    .line 400
+    iget p1, p1, Landroid/media/CamcorderProfile;->videoFrameWidth:I
+
+    iput p1, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoFrameWidth:I
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public clone()Lcom/oneplus/camera/next/hardware/Camcorder$Profile;
+    .locals 1
+
+    .line 404
+    invoke-super {p0}, Ljava/lang/Object;->clone()Ljava/lang/Object;
+
+    move-result-object p0
+
+    if-eqz p0, :cond_0
+
+    check-cast p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;
+
+    return-object p0
+
+    :cond_0
+    new-instance p0, Lkotlin/TypeCastException;
+
+    const-string v0, "null cannot be cast to non-null type com.oneplus.camera.next.hardware.Camcorder.Profile"
+
+    invoke-direct {p0, v0}, Lkotlin/TypeCastException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+.end method
+
+.method public bridge synthetic clone()Ljava/lang/Object;
+    .locals 0
+
+    .line 229
+    invoke-virtual {p0}, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->clone()Lcom/oneplus/camera/next/hardware/Camcorder$Profile;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public final getAudioBitRate()I
+    .locals 0
+
+    .line 410
+    iget p0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioBitRate:I
+
+    return p0
+.end method
+
+.method public final getAudioChannels()I
+    .locals 0
+
+    .line 416
+    iget p0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioChannels:I
+
+    return p0
+.end method
+
+.method public final getAudioEncoder()I
+    .locals 0
+
+    .line 422
+    iget p0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioEncoder:I
+
+    return p0
+.end method
+
+.method public final getAudioSampleRate()I
+    .locals 0
+
+    .line 428
+    iget p0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioSampleRate:I
+
+    return p0
+.end method
+
+.method public final getFileFormat()I
+    .locals 0
+
+    .line 434
+    iget p0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->fileFormat:I
+
+    return p0
+.end method
+
+.method public final getVideoBitRate()I
+    .locals 0
+
+    .line 440
+    iget p0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoBitRate:I
+
+    return p0
+.end method
+
+.method public final getVideoEncoder()I
+    .locals 0
+
+    .line 446
+    iget p0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoEncoder:I
+
+    return p0
+.end method
+
+.method public final getVideoFrameHeight()I
+    .locals 0
+
+    .line 452
+    iget p0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoFrameHeight:I
+
+    return p0
+.end method
+
+.method public final getVideoFrameWidth()I
+    .locals 0
+
+    .line 458
+    iget p0, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoFrameWidth:I
+
+    return p0
+.end method
+
+.method public final setAudioBitRate(I)V
+    .locals 0
+
+    .line 410
+    iput p1, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioBitRate:I
+
+    return-void
+.end method
+
+.method public final setAudioChannels(I)V
+    .locals 0
+
+    .line 416
+    iput p1, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioChannels:I
+
+    return-void
+.end method
+
+.method public final setAudioEncoder(I)V
+    .locals 0
+
+    .line 422
+    iput p1, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioEncoder:I
+
+    return-void
+.end method
+
+.method public final setAudioSampleRate(I)V
+    .locals 0
+
+    .line 428
+    iput p1, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->audioSampleRate:I
+
+    return-void
+.end method
+
+.method public final setFileFormat(I)V
+    .locals 0
+
+    .line 434
+    iput p1, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->fileFormat:I
+
+    return-void
+.end method
+
+.method public final setVideoBitRate(I)V
+    .locals 0
+
+    .line 440
+    iput p1, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoBitRate:I
+
+    return-void
+.end method
+
+.method public final setVideoEncoder(I)V
+    .locals 0
+
+    .line 446
+    iput p1, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoEncoder:I
+
+    return-void
+.end method
+
+.method public final setVideoFrameHeight(I)V
+    .locals 0
+
+    .line 452
+    iput p1, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoFrameHeight:I
+
+    return-void
+.end method
+
+.method public final setVideoFrameWidth(I)V
+    .locals 0
+
+    .line 458
+    iput p1, p0, Lcom/oneplus/camera/next/hardware/Camcorder$Profile;->videoFrameWidth:I
+
+    return-void
+.end method

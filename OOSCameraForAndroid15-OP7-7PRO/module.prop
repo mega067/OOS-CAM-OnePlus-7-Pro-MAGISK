@@ -1,6 +1,6 @@
 id=OnePlusCamera
-name=OnePlusCamera For OP7Pro V0.1📸💥
-version=v0.1
-versionCode=3
-author=Mega067
-description=This mod will bring back OnePlusCamera on KOSP(For OnePlus7Pro and OnePlus7)
+name=OOS Camera Port - Android 16 (Alpha) 📸
+version=v0.2-alpha
+versionCode=4
+author=Mega067 & Antigravity
+description=[EXPERIMENTAL] Unfinished port of OnePlus Camera for Android 16. Potential instability expected. Use with caution.

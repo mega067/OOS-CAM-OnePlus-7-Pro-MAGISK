@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:gravity="center" android:id="@id/capture_duration_text" android:paddingTop="?hintVerticalPadding" android:paddingBottom="?hintVerticalPadding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="?hintHeight" android:paddingStart="?hintHorizontalPadding" android:paddingEnd="?hintHorizontalPadding" style="@style/HintText" />
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/playback_recording_separator_dot_1" android:layout_marginStart="?playbackDurationDotMarginStart" android:layout_marginEnd="?playbackDurationDotSpace" />
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/playback_recording_separator_dot_2" android:layout_marginStart="?playbackDurationDotSpace" android:layout_marginEnd="?playbackDurationDotSpace" />
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/playback_recording_separator_dot_3" android:layout_marginStart="?playbackDurationDotSpace" android:layout_marginEnd="?playbackDurationDotMarginEnd" />
+    <TextView android:gravity="center" android:id="@id/playback_duration_text" android:paddingTop="?hintVerticalPadding" android:paddingBottom="?hintVerticalPadding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="?hintHeight" android:paddingStart="?hintHorizontalPadding" android:paddingEnd="?hintHorizontalPadding" style="@style/HintText" />
+</LinearLayout>
