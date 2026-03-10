@@ -13,8 +13,8 @@
   <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/stargazers">
     <img src="https://img.shields.io/github/stars/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK?style=flat-square&logo=github&color=gold&label=Stars" />
   </a>
-  <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/latest">
-    <img src="https://img.shields.io/github/v/release/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK?style=flat-square&logo=git&color=success&label=Latest%20Release" />
+  <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/tag/Alpha">
+    <img src="https://img.shields.io/badge/Release-Alpha-orange?style=flat-square&logo=git&label=Current%20Version" />
   </a>
 </p>
 
@@ -48,7 +48,7 @@ This project is an evolution and adaptation of the original work by **SebastianW
 
 ## 🚀 Installation Guide
 
-1.  **Download:** Get the latest `OOS-Camera-OP7PRO-Magisk.zip` from the [Releases](https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases) page.
+1.  **Download:** Get the latest `OOS-Camera-OP7PRO-Magisk.zip` from the [Releases](https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/tag/Alpha) page.
 2.  **Flash:** Open **Magisk Manager** -> Modules -> Install from storage.
 3.  **Reboot:** Restart your device to apply systemless changes.
 
