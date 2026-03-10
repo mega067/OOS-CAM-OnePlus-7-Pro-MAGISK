@@ -1,41 +1,65 @@
-# OOS Camera Port for OnePlus 7/7 Pro on Android 15
+# OOS Camera Port for OnePlus 7/7 Pro (Android 15 & 16)
 
-## Disclaimer
+<p align="center">
+  <img src="https://img.shields.io/badge/Device-OnePlus%207%20%2F%207%20Pro-eb0028?style=for-the-badge&logo=oneplus&logoColor=white" />
+  <img src="https://img.shields.io/badge/Android-15%20%26%2016-3ddc84?style=for-the-badge&logo=android&logoColor=white" />
+  <img src="https://img.shields.io/badge/Magisk-Required-ed1c24?style=for-the-badge&logo=magisk&logoColor=white" />
+</p>
 
-This is an unofficial port of the OnePlus OxygenOS camera for the OnePlus 7 and 7 Pro, adapted to work on Android 15. This is an early and experimental version, so you may encounter bugs. Use at your own risk.
-
-## Description
-
-This Magisk module installs the native OxygenOS camera application on custom ROMs for the OnePlus 7 and 7 Pro (guacamole/guacamoleb). It aims to provide the original camera experience, with all its features, on AOSP-based Android 15 builds.
-
-This project is an adaptation of the original port for Android 12L created by **SebastianWijatyk**. You can find the original thread on XDA forums: [New OnePlus OOS Camera for Android 12L (OP7 and 7Pro) Magisk Module](https://xdaforums.com/t/new-oneplus-oos-camera-for-android-12l-op7-and-7pro-magisk-module.4455707/).
-
-## Known Issues
-
-*   **Video Recording:** Standard video recording may not work correctly in all modes.
-*   **Recommendation:** For the best experience and full functionality, it is recommended to use the **Pro Camera** mode, which works reliably.
-
-## How it Works
-
-This Magisk module works by placing the necessary OnePlus Camera application files and libraries into your system partition systemlessly. It also sets the required permissions for the camera to function correctly, without modifying the actual system files.
-
-## Installation
-
-1.  Download the `OOS-Camera-OP7PRO-Magisk.zip` file from the [releases page](https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases).
-2.  Open Magisk Manager on your phone.
-3.  Go to the "Modules" section.
-4.  Tap on "Install from storage" and select the downloaded ZIP file.
-5.  Reboot your device.
-
-## Uninstallation
-
-1.  Open Magisk Manager.
-2.  Go to the "Modules" section.
-3.  Find the OOS Camera module and disable it or remove it.
-4.  Reboot your device.
-Alternatively, you can flash the `uninstall.sh` script in a custom recovery.
+<p align="center">
+  <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases">
+    <img src="https://img.shields.io/github/downloads/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/total?style=flat-square&logo=github&color=blue&label=Downloads" />
+  </a>
+  <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/stargazers">
+    <img src="https://img.shields.io/github/stars/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK?style=flat-square&logo=github&color=gold&label=Stars" />
+  </a>
+  <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/latest">
+    <img src="https://img.shields.io/github/v/release/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK?style=flat-square&logo=git&color=success&label=Latest%20Release" />
+  </a>
+</p>
 
 ---
 
-*Port for Android 15 by mega067*
-*Original Android 12L Port by SebastianWijatyk*
+## ⚠️ Disclaimer
+
+This is an **unofficial port** of the OnePlus OxygenOS camera for the **OnePlus 7 and 7 Pro (guacamole/guacamoleb)**, specifically adapted for **Android 15 and 16**. 
+> [!IMPORTANT]
+> This is an early and experimental version. Use at your own risk.
+
+## 📱 Description
+
+This Magisk module enables the native OxygenOS camera experience on AOSP-based Custom ROMs. It aims to restore the original post-processing and camera features that are often lost when leaving stock OOS.
+
+### ⚡ Compatibility Note
+* **Confirmed working on:** Android 15 & Android 16 (Initial support).
+* **Requirements:** Magisk 24.0+ or KernelSU.
+
+### Credits & Acknowledgments
+This project is an evolution and adaptation of the original work by **SebastianWijatyk** (Android 12L).
+* **Original XDA Thread:** [New OnePlus OOS Camera for Android 12L](https://xdaforums.com/t/new-oneplus-oos-camera-for-android-12l-op7-and-7pro-magisk-module.4455707/)
+* **Modern Adaptation:** Developed by **mega067**
+
+---
+
+## 🛠️ Known Issues & Fixes
+
+* **Video Recording:** Standard modes might be unstable on some Android 16 builds.
+* **💡 Pro Tip:** For the most stable experience and full manual control, use the **Pro Camera** mode. It is the most reliable way to capture photos and videos in this port.
+
+## 🚀 Installation Guide
+
+1.  **Download:** Get the latest `OOS-Camera-OP7PRO-Magisk.zip` from the [Releases](https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases) page.
+2.  **Flash:** Open **Magisk Manager** -> Modules -> Install from storage.
+3.  **Reboot:** Restart your device to apply systemless changes.
+
+## 🗑️ Uninstallation
+
+* **Via Magisk:** Open Magisk Manager, find the module, and select "Remove". Reboot.
+* **Via Recovery:** Flash the `uninstall.sh` script if you have access to a custom recovery.
+
+---
+
+<p align="center">
+  <b>Developed with ❤️ for the OnePlus Community</b><br>
+  <sub>Port for Android 15/16 by <b>mega067</b></sub>
+</p>
