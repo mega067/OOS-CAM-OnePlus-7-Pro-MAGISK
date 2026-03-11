@@ -11,7 +11,7 @@
 # Uncomment and change 'MINAPI' and 'MAXAPI' to the minimum and maximum android version for your mod
 # Uncomment DYNLIB if you want libs installed to vendor for oreo+ and system for anything older
 # Uncomment DEBUG if you want full debug logs (saved to /sdcard)
-MINAPI=35
+MINAPI=31
 #MAXAPI=35
 #DYNLIB=true
 #DEBUG=true
@@ -42,7 +42,14 @@ REPLACE="
 ##########################################################################################
 
 set_permissions() {
-  : # Remove this if adding to this function
+  ui_print "*******************************"
+  ui_print "*    OP CAM 6.4 (OOS Port)    *"
+  ui_print "*   Series 7 | Series 7 Pro   *"
+  ui_print "*      Android 16 Support     *"
+  ui_print "*******************************"
+  ui_print "- Ported for OnePlus 7 Series"
+  ui_print "- Targeted for AOSP ROMs"
+  ui_print "- Modded by Mega067 & Antigravity"
 
   # Note that all files/folders in magisk module directory have the $MODPATH prefix - keep this prefix on all of your files/folders
   # Some examples:

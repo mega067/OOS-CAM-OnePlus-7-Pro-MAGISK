@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OP CAM 6.4 Dashboard</title>
+    <style>
+        :root {
+            --primary: #eb0010;
+            --background: #121212;
+            --surface: #1e1e1e;
+            --text: #ffffff;
+            --secondary-text: #b0b0b0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        p {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 12px;
+            background-color: var(--surface);
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .btn:active {
+            transform: scale(0.98);
+            background-color: #2a2a2a;
+        }
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        .btn-primary:active {
+            background-color: #c4000d;
+        }
+        .icon {
+            margin-right: 10px;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--secondary-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>OP CAM 6.4</h1>
+            <p>OnePlus 7 / Pro Port for Android 16</p>
+        </div>
+        
+        <a href="intent://#Intent;action=android.media.action.STILL_IMAGE_CAMERA;component=com.oneplus.camera/com.oneplus.camera.CameraActivity;end" class="btn btn-primary">
+            <span class="icon">📸</span> Abrir Cámara
+        </a>
+        
+        <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK" class="btn">
+            <span class="icon">📂</span> Ver Repositorio
+        </a>
+
+        <div class="footer">
+            Versión Alpha | Modificado por Mega067 & Antigravity
+        </div>
+    </div>
+</body>
+</html>
