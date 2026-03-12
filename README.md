@@ -53,13 +53,13 @@ Almost everything functions perfectly with great aesthetics and performance:
 * **Portrait Mode:** Accurate edge detection and bokeh.
 * **Panorama:** Seamless stitching.
 * **Slow Motion & Time-Lapse:** Fully functional without issues.
+* **Video Recording:** Fixed in v6.4.2! Standard Video tab now works on AOSP/Android 16.
 
 ### ⚠️ Known Bugs
-* **Video Tab Crash:** Switching directly to the **Video tab** currently causes a crash on some Android 16 builds.
-  * **💡 Workaround / Fix:** You can still record video smoothly! Simply stay in the standard Photo mode, **press and hold the shutter button**, and it will begin recording video without crashing. *We are actively working on a permanent fix for the tab crash.*
+- No major bugs remaining on Android 16. Switching lenses and recording video is stable.
 ## 🚀 Installation Guide
 
-1.  **Download:** Get the latest `OP_CAM_6.4_Oneplus_7_pro.zip` from the [Releases](https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/latest) page.
+1.  **Download:** Get the latest `OOS-CAM-v6.4.2.zip` from the [Releases](https://github.com/Mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/latest) page.
 2.  **Flash:** Open **Magisk Manager** -> Modules -> Install from storage.
 3.  **Reboot:** Restart your device to apply systemless changes.
 
