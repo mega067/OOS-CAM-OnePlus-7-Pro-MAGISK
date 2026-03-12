@@ -2210,7 +2210,7 @@
 
     move-result v8
 
-    if-eqz v8, :cond_7
+    nop
 
     .line 289
     new-instance v12, Lcom/oneplus/camera/resolution/Resolution;
@@ -12951,7 +12951,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    nop
 
     .line 1651
     new-instance v10, Lcom/oneplus/camera/resolution/Resolution;
@@ -13059,7 +13059,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_4
+    nop
 
     .line 1664
     new-instance v10, Lcom/oneplus/camera/resolution/Resolution;
@@ -13274,7 +13274,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_a
+    nop
 
     .line 1689
     new-instance v10, Lcom/oneplus/camera/resolution/Resolution;
