@@ -8,16 +8,19 @@
 
 <p align="center">
   <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases">
-    <img src="https://img.shields.io/github/downloads/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/total?style=flat-square&logo=github&color=blue&label=Downloads" />
+    <img src="https://img.shields.io/github/downloads/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/total?style=for-the-badge&logo=github&color=00e676&label=Total%20Downloads" />
   </a>
   <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/stargazers">
-    <img src="https://img.shields.io/github/stars/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK?style=flat-square&logo=github&color=gold&label=Stars" />
+    <img src="https://img.shields.io/github/stars/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK?style=for-the-badge&logo=github&color=gold&label=Stars" />
   </a>
-  <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/tag/Alpha">
-    <img src="https://img.shields.io/badge/Release-Alpha-orange?style=flat-square&logo=git&label=Current%20Version" />
+  <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/latest">
+    <img src="https://img.shields.io/github/v/release/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK?style=for-the-badge&logo=git&label=Latest%20Version&color=blue" />
   </a>
 </p>
 
+<p align="center">
+  <i>* Note: The download counter automatically tracks both manual ZIP downloads and automated in-app updates via Magisk/KernelSU.</i>
+</p>
 ---
 
 ## ⚠️ Disclaimer
@@ -48,7 +51,7 @@ This project is an evolution and adaptation of the original work by **SebastianW
 
 ## 🚀 Installation Guide
 
-1.  **Download:** Get the latest `OOS-Camera-OP7PRO-Magisk.zip` from the [Releases](https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/tag/Alpha) page.
+1.  **Download:** Get the latest `OP_CAM_6.4_Oneplus_7_pro.zip` from the [Releases](https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/latest) page.
 2.  **Flash:** Open **Magisk Manager** -> Modules -> Install from storage.
 3.  **Reboot:** Restart your device to apply systemless changes.
 
