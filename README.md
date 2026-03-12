@@ -44,11 +44,19 @@ This project is an evolution and adaptation of the original work by **SebastianW
 
 ---
 
-## 🛠️ Known Issues & Fixes
+## 🛠️ Working Features & Known Issues
 
-* **Video Recording:** Standard modes might be unstable on some Android 16 builds.
-* **💡 Pro Tip:** For the most stable experience and full manual control, use the **Pro Camera** mode. It is the most reliable way to capture photos and videos in this port.
+### ✅ What's Working
+Almost everything functions perfectly with great aesthetics and performance:
+* **Photo Capture:** Native OxygenOS quality.
+* **Pro Mode:** Full manual controls working flawlessly.
+* **Portrait Mode:** Accurate edge detection and bokeh.
+* **Panorama:** Seamless stitching.
+* **Slow Motion & Time-Lapse:** Fully functional without issues.
 
+### ⚠️ Known Bugs
+* **Video Tab Crash:** Switching directly to the **Video tab** currently causes a crash on some Android 16 builds.
+  * **💡 Workaround / Fix:** You can still record video smoothly! Simply stay in the standard Photo mode, **press and hold the shutter button**, and it will begin recording video without crashing. *We are actively working on a permanent fix for the tab crash.*
 ## 🚀 Installation Guide
 
 1.  **Download:** Get the latest `OP_CAM_6.4_Oneplus_7_pro.zip` from the [Releases](https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/latest) page.
