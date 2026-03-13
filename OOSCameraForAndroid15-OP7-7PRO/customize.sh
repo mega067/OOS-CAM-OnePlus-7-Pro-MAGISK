@@ -51,7 +51,7 @@ set_permissions() {
   ui_print "*   ╚██████╔╝██║     ╚██████╗██║  ██║██║ ╚═╝ ██║ *"
   ui_print "*    ╚═════╝ ╚═╝      ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝ *"
   ui_print "*                                           *"
-  ui_print "*    OnePlus Camera Port - v6.4.10 (Alpha)  *"
+  ui_print "*    OnePlus Camera Port - v6.4.11 (Alpha)  *"
   ui_print "*********************************************"
   ui_print "- Device: OnePlus 7 / 7 Pro / 7T / 7T Pro"
   ui_print "- Android: 14 / 15 / 16 (AOSP)"
@@ -64,7 +64,7 @@ set_permissions() {
   set_perm_recursive $MODPATH/system 0 0 0755 0644
   
   # Set permissions for the APK specifically
-  set_perm $MODPATH/system/priv-app/OnePlusCamera/OnePlusCameraV7-aligned-debugSigned.apk 0 0 0644
+  set_perm $MODPATH/system/priv-app/OnePlusCamera/OnePlusCamera_FIX_v3.apk 0 0 0644
 
   # Set permissions for binary/libs if any
   if [ -d "$MODPATH/system/priv-app/OnePlusCamera/lib" ]; then
@@ -82,9 +82,9 @@ set_permissions() {
     ui_print "[!] KernelSU detected!"
     ui_print "- Trying to auto-install APK for KernelSU..."
     # Attempt to install the app via pm
-    if [ -f "$MODPATH/system/priv-app/OnePlusCamera/OnePlusCameraV7-aligned-debugSigned.apk" ]; then
+    if [ -f "$MODPATH/system/priv-app/OnePlusCamera/OnePlusCamera_FIX_v3.apk" ]; then
        # pm install -r might not work in all recovery environments, but works in KSU Manager
-       pm install -r "$MODPATH/system/priv-app/OnePlusCamera/OnePlusCameraV7-aligned-debugSigned.apk" >/dev/null 2>&1
+       pm install -r "$MODPATH/system/priv-app/OnePlusCamera/OnePlusCamera_FIX_v3.apk" >/dev/null 2>&1
        ui_print "- Installation command sent to PM."
     fi
     ui_print "- NOTE: If the app doesn't appear after reboot,"
