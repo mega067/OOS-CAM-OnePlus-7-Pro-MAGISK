@@ -6800,6 +6800,30 @@
     goto :cond_2
 
     :cond_notif_skip
+    # PATCHED: Also skip READ_EXTERNAL_STORAGE (always denied on Android 16)
+    const-string v6, "android.permission.READ_EXTERNAL_STORAGE"
+
+    invoke-static {v4, v6}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
+
+    move-result v6
+
+    if-eqz v6, :cond_read_skip
+
+    goto :cond_2
+
+    :cond_read_skip
+    # PATCHED: Also skip WRITE_EXTERNAL_STORAGE (always denied on Android 16)
+    const-string v6, "android.permission.WRITE_EXTERNAL_STORAGE"
+
+    invoke-static {v4, v6}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
+
+    move-result v6
+
+    if-eqz v6, :cond_write_skip
+
+    goto :cond_2
+
+    :cond_write_skip
     .line 2111
     invoke-virtual {v0, v4}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
     :try_end_0
