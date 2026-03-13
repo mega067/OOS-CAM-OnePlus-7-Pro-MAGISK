@@ -19798,7 +19798,8 @@
     invoke-static {v2, v3}, Lcom/oneplus/base/Log;->w(Ljava/lang/String;Ljava/lang/String;)V
 
     .line 3355
-    invoke-virtual {p0}, Lcom/oneplus/camera/CameraActivity;->finish()V
+    # PATCHED: Skip finish() for storage permissions (always denied on Android 16)
+    nop
 
     goto :goto_4
 
