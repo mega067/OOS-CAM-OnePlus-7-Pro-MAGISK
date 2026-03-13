@@ -952,7 +952,8 @@
     .annotation runtime Lcom/oneplus/base/AccessOnWorkerThread;
     .end annotation
 
-    .line 156
+    # PATCHED: Disable thermal checks as they are failing and may cause shutdowns
+    return-void
     :try_start_0
     new-instance v0, Ljava/io/FileInputStream;
 

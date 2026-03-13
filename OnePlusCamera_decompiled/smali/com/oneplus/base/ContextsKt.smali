@@ -42,6 +42,25 @@
 
     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkParameterIsNotNull(Ljava/lang/Object;Ljava/lang/String;)V
 
+    # PATCHED: Spoof storage permissions for Android 16
+    const-string v0, "android.permission.READ_EXTERNAL_STORAGE"
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v0
+    if-eqz v0, :cond_ext_1
+
+    const/4 p0, 0x1
+    return p0
+
+    :cond_ext_1
+    const-string v0, "android.permission.WRITE_EXTERNAL_STORAGE"
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v0
+    if-eqz v0, :cond_ext_2
+
+    const/4 p0, 0x1
+    return p0
+
+    :cond_ext_2
     .line 11
     invoke-virtual {p0, p1}, Landroid/content/Context;->checkSelfPermission(Ljava/lang/String;)I
 
