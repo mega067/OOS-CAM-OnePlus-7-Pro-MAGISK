@@ -6789,41 +6789,7 @@
 
     if-ne v5, v6, :cond_2
 
-    const-string v6, "android.permission.POST_NOTIFICATIONS"
-
-    invoke-static {v4, v6}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
-
-    move-result v6
-
-    if-eqz v6, :cond_notif_skip
-
-    goto :cond_2
-
-    :cond_notif_skip
-    # PATCHED: Also skip READ_EXTERNAL_STORAGE (always denied on Android 16)
-    const-string v6, "android.permission.READ_EXTERNAL_STORAGE"
-
-    invoke-static {v4, v6}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
-
-    move-result v6
-
-    if-eqz v6, :cond_read_skip
-
-    goto :cond_2
-
-    :cond_read_skip
-    # PATCHED: Also skip WRITE_EXTERNAL_STORAGE (always denied on Android 16)
-    const-string v6, "android.permission.WRITE_EXTERNAL_STORAGE"
-
-    invoke-static {v4, v6}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
-
-    move-result v6
-
-    if-eqz v6, :cond_write_skip
-
-    goto :cond_2
-
-    :cond_write_skip
+    # Original logic: add to required permissions list
     .line 2111
     invoke-virtual {v0, v4}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
     :try_end_0
@@ -13855,7 +13821,8 @@
 
     xor-int/2addr v3, v2
 
-    if-eqz v3, :cond_b
+    # PATCHED: Bypass permission check block to prevent dark screen
+    if-nez v1, :cond_b
 
     if-eqz p1, :cond_a
 
@@ -19660,6 +19627,39 @@
     move-result v3
 
     sparse-switch v3, :sswitch_data_0
+
+    # PATCHED: Handle new permissions
+    const-string v3, "android.permission.READ_MEDIA_IMAGES"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-eqz v3, :goto_2
+
+    const-string v3, "android.permission.READ_MEDIA_VIDEO"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-eqz v3, :goto_2
+
+    const-string v3, "android.permission.READ_MEDIA_AUDIO"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-eqz v3, :goto_2
+
+    const-string v3, "android.permission.POST_NOTIFICATIONS"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-eqz v3, :goto_2
 
     goto/16 :goto_4
 
