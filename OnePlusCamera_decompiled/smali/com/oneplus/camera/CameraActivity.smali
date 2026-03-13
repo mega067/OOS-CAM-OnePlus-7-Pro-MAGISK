@@ -13727,16 +13727,8 @@
 
     if-eqz v0, :cond_3
 
-    if-eqz p1, :cond_2
-
-    .line 1120
-    iget-object p0, p0, Lcom/oneplus/camera/CameraActivity;->TAG:Ljava/lang/String;
-
-    const-string p1, "checkCanStartCameraPreview() - Activity is not running"
-
-    invoke-static {p0, p1}, Lcom/oneplus/base/Log;->w(Ljava/lang/String;Ljava/lang/String;)V
-
     :cond_2
+    const/4 v1, 0x1 # Force true
     return v1
 
     .line 1125
@@ -13806,6 +13798,7 @@
 
     move-result-object v3
 
+    # PATCHED: Ignore missing output target temporarily
     if-nez v3, :cond_9
 
     if-eqz p1, :cond_8
@@ -13813,11 +13806,12 @@
     .line 1151
     iget-object p0, p0, Lcom/oneplus/camera/CameraActivity;->TAG:Ljava/lang/String;
 
-    const-string p1, "checkCanStartCameraPreview() - No output target"
+    const-string p1, "checkCanStartCameraPreview() - No output target (IGNORED)"
 
     invoke-static {p0, p1}, Lcom/oneplus/base/Log;->w(Ljava/lang/String;Ljava/lang/String;)V
 
     :cond_8
+    const/4 v1, 0x1 # Force true
     return v1
 
     .line 1156
