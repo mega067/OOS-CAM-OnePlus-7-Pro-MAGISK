@@ -13822,7 +13822,7 @@
     xor-int/2addr v3, v2
 
     # PATCHED: Bypass permission check block to prevent dark screen
-    if-nez v1, :cond_b
+    if-eqz v1, :cond_b
 
     if-eqz p1, :cond_a
 
