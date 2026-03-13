@@ -6831,6 +6831,19 @@
 
     .line 2121
     :cond_4
+    # PATCHED: Force inclusion of new permissions to trigger request system
+    const-string v1, "android.permission.READ_MEDIA_IMAGES"
+    invoke-virtual {v0, v1}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
+
+    const-string v1, "android.permission.READ_MEDIA_VIDEO"
+    invoke-virtual {v0, v1}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
+
+    const-string v1, "android.permission.READ_MEDIA_AUDIO"
+    invoke-virtual {v0, v1}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
+
+    const-string v1, "android.permission.POST_NOTIFICATIONS"
+    invoke-virtual {v0, v1}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
+
     check-cast v0, Ljava/lang/Iterable;
 
     invoke-static {v0}, Lkotlin/collections/CollectionsKt;->toList(Ljava/lang/Iterable;)Ljava/util/List;
