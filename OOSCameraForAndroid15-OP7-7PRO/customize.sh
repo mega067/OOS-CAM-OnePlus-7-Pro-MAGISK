@@ -51,7 +51,7 @@ set_permissions() {
   ui_print "*   ╚██████╔╝██║     ╚██████╗██║  ██║██║ ╚═╝ ██║ *"
   ui_print "*    ╚═════╝ ╚═╝      ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝ *"
   ui_print "*                                           *"
-  ui_print "*    OnePlus Camera Port - v6.4.9 (Alpha)   *"
+  ui_print "*    OnePlus Camera Port - v6.4.10 (Alpha)  *"
   ui_print "*********************************************"
   ui_print "- Device: OnePlus 7 / 7 Pro / 7T / 7T Pro"
   ui_print "- Android: 14 / 15 / 16 (AOSP)"
