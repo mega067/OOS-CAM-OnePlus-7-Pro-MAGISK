@@ -42,34 +42,64 @@ REPLACE="
 ##########################################################################################
 
 set_permissions() {
-  ui_print "*******************************"
-  ui_print "*    OP CAM 6.4 (OOS Port)    *"
-  ui_print "*   Series 7 | Series 7 Pro   *"
-  ui_print "*      Android 16 Support     *"
-  ui_print "*******************************"
-  ui_print "- Ported for OnePlus 7 Series"
-  ui_print "- Targeted for AOSP ROMs"
-  ui_print "- Modded by Mega067 & Antigravity"
+  ui_print "*********************************************"
+  ui_print "*                                           *"
+  ui_print "*    ██████╗ ██████╗  ██████╗ █████╗ ███╗   ███╗ *"
+  ui_print "*   ██╔═══██╗██╔══██╗██╔════╝██╔══██╗████╗ ████║ *"
+  ui_print "*   ██║   ██║██████╔╝██║     ███████║██╔████╔██║ *"
+  ui_print "*   ██║   ██║██╔═══╝ ██║     ██╔══██║██║╚██╔╝██║ *"
+  ui_print "*   ╚██████╔╝██║     ╚██████╗██║  ██║██║ ╚═╝ ██║ *"
+  ui_print "*    ╚═════╝ ╚═╝      ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝ *"
+  ui_print "*                                           *"
+  ui_print "*    OnePlus Camera Port - v6.4.9 (Alpha)   *"
+  ui_print "*********************************************"
+  ui_print "- Device: OnePlus 7 / 7 Pro / 7T / 7T Pro"
+  ui_print "- Android: 14 / 15 / 16 (AOSP)"
+  ui_print "- Developer: Mega067 & Antigravity"
+  ui_print "*********************************************"
 
-  # Note that all files/folders in magisk module directory have the $MODPATH prefix - keep this prefix on all of your files/folders
-  # Some examples:
+  ui_print "[#] Setting permissions..."
   
-  # For directories (includes files in them):
-  # set_perm_recursive  <dirname>                <owner> <group> <dirpermission> <filepermission> <contexts> (default: u:object_r:system_file:s0)
+  # Set permissions for system files
+  set_perm_recursive $MODPATH/system 0 0 0755 0644
   
-  # set_perm_recursive $MODPATH/system/lib 0 0 0755 0644
-  # set_perm_recursive $MODPATH/system/vendor/lib/soundfx 0 0 0755 0644
+  # Set permissions for the APK specifically
+  set_perm $MODPATH/system/priv-app/OnePlusCamera/OnePlusCameraV7-aligned-debugSigned.apk 0 0 0644
 
-  # For files (not in directories taken care of above)
-  # set_perm  <filename>                         <owner> <group> <permission> <contexts> (default: u:object_r:system_file:s0)
-  
-  # set_perm $MODPATH/system/lib/libart.so 0 0 0644
-  # set_perm /data/local/tmp/file.txt 0 0 644
-# set_perm /system/system_ext/priv-app/WallpaperPickerGoogleRelease/WallpaperPickerGoogleRelease.apk 0 0 644
+  # Set permissions for binary/libs if any
+  if [ -d "$MODPATH/system/priv-app/OnePlusCamera/lib" ]; then
+    ui_print "[#] Setting library permissions..."
+    set_perm_recursive $MODPATH/system/priv-app/OnePlusCamera/lib 0 0 0755 0644
+  fi
 
-  # Establece el contexto correcto para las reglas de sepolicy
+  # Set permissions for sepolicy
+  ui_print "[#] Applying SEPolicy rules..."
   set_perm_recursive $MODPATH/sepolicy u:object_r:system_file:s0 0 0 0755 0644
 
+  ui_print "---------------------------------------------"
+  
+  if [ "$KSU" = "true" ]; then
+    ui_print "[!] KernelSU detected!"
+    ui_print "- Trying to auto-install APK for KernelSU..."
+    # Attempt to install the app via pm
+    if [ -f "$MODPATH/system/priv-app/OnePlusCamera/OnePlusCameraV7-aligned-debugSigned.apk" ]; then
+       # pm install -r might not work in all recovery environments, but works in KSU Manager
+       pm install -r "$MODPATH/system/priv-app/OnePlusCamera/OnePlusCameraV7-aligned-debugSigned.apk" >/dev/null 2>&1
+       ui_print "- Installation command sent to PM."
+    fi
+    ui_print "- NOTE: If the app doesn't appear after reboot,"
+    ui_print "  please install the APK manually from:"
+    ui_print "  /data/adb/modules/OnePlusCamera/system/priv-app/..."
+  else
+    ui_print "[*] Magisk detected!"
+  fi
+
+  ui_print "*********************************************"
+  ui_print "*        INSTALLATION SUCCESSFUL!           *"
+  ui_print "*********************************************"
+  ui_print "- Please reboot your device."
+  ui_print "- Clear Camera cache/data after reboot."
+  ui_print "*********************************************"
 }
 
 ##########################################################################################
