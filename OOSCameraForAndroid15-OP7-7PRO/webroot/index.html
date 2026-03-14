@@ -244,7 +244,7 @@
     <div class="container">
         <header>
             <h1 class="logo">OP CAM</h1>
-            <div class="version">SERIES 7 | PRO | v6.5.0</div>
+            <div class="version">SERIES 7 | PRO | v6.5.1</div>
         </header>
 
         <nav class="tabs-nav">
@@ -288,10 +288,10 @@
                     <p>Standard updates, more stable and tested.</p>
                 </div>
 
-                <div class="branch-option" id="branch-alpha" onclick="selectBranch('alpha')">
-                    <span class="badge badge-alpha">Alpha</span>
-                    <h3>Pre-release (Repo)</h3>
-                    <p>Cutting-edge fixes, potentially unstable. Recommended for Android 16 users.</p>
+                <div class="branch-option" id="branch-pre" onclick="selectBranch('pre-release')">
+                    <span class="badge badge-alpha">Experimental</span>
+                    <h3>Pre-release</h3>
+                    <p>Cutting-edge fixes, potentially unstable. Ideal for testing new Android 16 patches.</p>
                 </div>
 
                 <button id="apply-btn" class="btn" style="display: none;" onclick="applyChanges()">
@@ -333,9 +333,9 @@
         function selectBranch(branch) {
             selectedBranch = branch;
             document.getElementById('branch-main').classList.toggle('selected', branch === 'main');
-            document.getElementById('branch-alpha').classList.toggle('selected', branch === 'alpha');
+            document.getElementById('branch-pre').classList.toggle('selected', branch === 'pre-release');
             document.getElementById('apply-btn').style.display = 'flex';
-            document.getElementById('status-msg').innerText = "Click apply to switch to " + (branch === 'alpha' ? 'Pre-release' : 'Latest');
+            document.getElementById('status-msg').innerText = "Click apply to switch to " + (branch === 'pre-release' ? 'Pre-release' : 'Latest');
         }
 
         function applyChanges() {

@@ -10,9 +10,9 @@ update_branch_ui() {
     local target_branch=$1
     local update_url=""
     
-    if [ "$target_branch" == "alpha" ]; then
-        update_url="https://raw.githubusercontent.com/Mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/REPO/update.json"
-        ui_msg="Branch switched to Pre-release (Alpha)"
+    if [ "$target_branch" == "pre-release" ]; then
+        update_url="https://raw.githubusercontent.com/Mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/Pre-release/update.json"
+        ui_msg="Branch switched to Pre-release"
     else
         update_url="https://raw.githubusercontent.com/Mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/main/update.json"
         ui_msg="Branch switched to Latest (Main)"
