@@ -1,6 +1,6 @@
 {
-  "version": "6.5.1",
-  "versionCode": 17,
-  "zipUrl": "https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/download/v6.5.1-alpha/OOS-CAM-v6.5.1-alpha.zip",
-  "changelog": "https://raw.githubusercontent.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/REPO/changelog.md"
+  "version": "6.5.2",
+  "versionCode": 18,
+  "zipUrl": "https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/releases/download/v6.5.2-experimental/OOS-CAM-v6.5.2-experimental.zip",
+  "changelog": "https://raw.githubusercontent.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/Pre-release/changelog.md"
 }
