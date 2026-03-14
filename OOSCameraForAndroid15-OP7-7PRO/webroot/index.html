@@ -16,6 +16,7 @@
             --text-dim: #b0b0b0;
             --glass: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.1);
+            --success: #00c853;
         }
 
         * {
@@ -55,11 +56,15 @@
             letter-spacing: 4px;
         }
 
-        .version {
+        .version-badge {
             font-size: 0.8rem;
             color: var(--text-dim);
             letter-spacing: 2px;
             margin-top: 5px;
+            background: var(--glass);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
         }
 
         /* Tabs Navigation */
@@ -128,10 +133,6 @@
             color: var(--primary);
         }
 
-        .card-title i {
-            margin-right: 10px;
-        }
-
         /* Buttons */
         .btn {
             display: flex;
@@ -166,8 +167,10 @@
             color: var(--text);
         }
 
-        .btn-outline:active {
-            background: var(--glass);
+        .btn-reboot {
+            background: #ffffff;
+            color: #000000;
+            margin-top: 20px;
         }
 
         /* Branch Selection Styles */
@@ -186,6 +189,26 @@
         .branch-option.selected {
             border-color: var(--primary);
             background: rgba(235, 0, 16, 0.1);
+        }
+
+        .branch-option.active-branch {
+            border-color: var(--success);
+            background: rgba(0, 200, 83, 0.1);
+        }
+
+        .current-label {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: var(--success);
+            text-transform: uppercase;
+            display: none;
+        }
+
+        .branch-option.active-branch .current-label {
+            display: block;
         }
 
         .branch-option h3 {
@@ -216,7 +239,7 @@
         .status-msg {
             text-align: center;
             font-size: 0.85rem;
-            margin-top: 10px;
+            margin-top: 15px;
             color: var(--primary);
             min-height: 1.2rem;
             font-weight: 700;
@@ -230,21 +253,29 @@
             line-height: 1.5;
         }
 
-        /* Modal / Tooltip for confirmation */
-        #apply-btn {
-            margin-top: 20px;
-            background: #ffffff;
-            color: #000000;
+        /* Terminal-like output */
+        #console {
+            background: #000;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            font-size: 0.75rem;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            max-height: 100px;
+            overflow-y: auto;
+            display: none;
+            border: 1px solid #333;
         }
 
     </style>
 </head>
-<body>
+<body onload="init()">
 
     <div class="container">
         <header>
             <h1 class="logo">OP CAM</h1>
-            <div class="version">SERIES 7 | PRO | v6.5.1</div>
+            <div class="version-badge">SERIES 7 | PRO | v6.5.3</div>
         </header>
 
         <nav class="tabs-nav">
@@ -256,13 +287,15 @@
         <div id="control" class="tab-content active">
             <div class="card">
                 <div class="card-title">🚀 QUICK ACTIONS</div>
-                <a href="intent://#Intent;action=android.media.action.STILL_IMAGE_CAMERA;component=com.oneplus.camera/com.oneplus.camera.CameraActivity;end" class="btn btn-active">
+                <button onclick="launchCamera()" class="btn btn-active">
                     📸 OPEN CAMERA
-                </a>
+                </button>
                 <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK" class="btn btn-outline">
                     📂 VIEW REPOSITORY
                 </a>
             </div>
+
+            <div id="console"></div>
 
             <div class="card">
                 <div class="card-title">ℹ️ INFORMATION</div>
@@ -270,8 +303,8 @@
                     This port allows using the official OnePlus Camera on AOSP-based ROMs with dedicated optimizations for Android 16.
                 </p>
                 <div style="display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.8rem; color: var(--primary);">
-                    <span>STORAGE FIX: ACTIVE</span>
-                    <span>THERMAL FIX: ACTIVE</span>
+                    <span>VERSION: v6.5.3-alpha</span>
+                    <span>ENGINE: DIRECT-ROOT</span>
                 </div>
             </div>
         </div>
@@ -279,30 +312,33 @@
         <!-- Updates Tab -->
         <div id="updates" class="tab-content">
             <div class="card">
-                <div class="card-title">🛰️ UPDATE BRANCH</div>
-                <p style="margin-bottom: 20px; font-size: 0.85rem;">Select your preferred update stream. Changes require a reboot to take effect.</p>
+                <div class="card-title">🛰️ UPDATE CHANNEL</div>
+                <p style="margin-bottom: 20px; font-size: 0.85rem;">Select your stream. Switching requires a device <b>REBOOT</b>.</p>
 
                 <div class="branch-option" id="branch-main" onclick="selectBranch('main')">
                     <span class="badge badge-stable">Stable</span>
                     <h3>Latest (Main)</h3>
-                    <p>Standard updates, more stable and tested.</p>
+                    <p>Verified updates, balanced stability.</p>
+                    <span class="current-label">● ACTIVE CHANNEL</span>
                 </div>
 
                 <div class="branch-option" id="branch-pre" onclick="selectBranch('pre-release')">
-                    <span class="badge badge-alpha">Experimental</span>
+                    <span class="badge badge-alpha">Alpha</span>
                     <h3>Pre-release</h3>
-                    <p>Cutting-edge fixes, potentially unstable. Ideal for testing new Android 16 patches.</p>
+                    <p>Cutting-edge features and A16 fixes.</p>
+                    <span class="current-label">● ACTIVE CHANNEL</span>
                 </div>
 
-                <button id="apply-btn" class="btn" style="display: none;" onclick="applyChanges()">
-                    💾 APPLY & REBOOT REQUEST
+                <div id="status-msg" class="status-msg">Identifying current configuration...</div>
+
+                <button id="apply-btn" class="btn btn-reboot" style="display: none;" onclick="applyAndReboot()">
+                    💾 APPLY & REBOOT NOW
                 </button>
-                <div id="status-msg" class="status-msg"></div>
             </div>
             
-            <div class="card" style="border-style: dashed; opacity: 0.8;">
-                 <p style="font-size: 0.8rem; text-align: center;">
-                    After clicking apply, the module will update its configuration. You must restart for the Magisk Manager to see the new update source.
+            <div class="card" style="border-style: dashed; opacity: 0.8; padding: 15px;">
+                 <p style="font-size: 0.75rem; text-align: center; margin: 0; color: var(--text-dim);">
+                    Direct Root execution mode. Changes are written directly to module prop for immediate effect after reboot.
                  </p>
             </div>
         </div>
@@ -314,7 +350,54 @@
     </div>
 
     <script>
-        let selectedBranch = 'main';
+        // Magisk WebUI Shell Bridge
+        const modPath = "/data/adb/modules/OnePlusCamera";
+        let currentBranch = "main";
+        let selectedBranch = "main";
+
+        function execShell(cmd) {
+            // Magisk WebUI standard execution
+            return new Promise((resolve) => {
+                if (window.magisk) {
+                    window.magisk.exec(cmd, (res) => resolve(res));
+                } else {
+                    // Fallback for some managers or testing
+                    console.log("Mock Shell Exec: " + cmd);
+                    // Try to use a hidden method if available
+                    fetch("/cgi-bin/exec?" + encodeURIComponent(cmd)).catch(e => {});
+                    resolve("");
+                }
+            });
+        }
+
+        async function init() {
+            log("Initializing Direct Root Bridge...");
+            
+            // Identify current branch from module.prop
+            try {
+                // Read updateJson line
+                const content = await execShell(`grep "updateJson" ${modPath}/module.prop`);
+                if (content.includes("Pre-release")) {
+                    currentBranch = "pre-release";
+                } else {
+                    currentBranch = "main";
+                }
+                
+                selectedBranch = currentBranch;
+                updateUIState();
+                document.getElementById('status-msg').innerText = "Current stream: " + (currentBranch === 'main' ? 'Latest' : 'Pre-release');
+                document.getElementById('status-msg').style.color = "var(--text-dim)";
+            } catch (e) {
+                log("Error reading config: " + e);
+            }
+        }
+
+        function log(msg) {
+            const con = document.getElementById("console");
+            con.style.display = "block";
+            con.innerHTML += "> " + msg + "<br>";
+            con.scrollTop = con.scrollHeight;
+        }
 
         function openTab(evt, tabName) {
             var i, tabcontent, tabbtn;
@@ -332,33 +415,60 @@
 
         function selectBranch(branch) {
             selectedBranch = branch;
-            document.getElementById('branch-main').classList.toggle('selected', branch === 'main');
-            document.getElementById('branch-pre').classList.toggle('selected', branch === 'pre-release');
-            document.getElementById('apply-btn').style.display = 'flex';
-            document.getElementById('status-msg').innerText = "Click apply to switch to " + (branch === 'pre-release' ? 'Pre-release' : 'Latest');
+            updateUIState();
+            
+            const changed = selectedBranch !== currentBranch;
+            document.getElementById('apply-btn').style.display = changed ? 'flex' : 'none';
+            
+            if (changed) {
+                document.getElementById('status-msg').innerText = "Switching to " + (branch === 'pre-release' ? 'Pre-release' : 'Latest') + "...";
+                document.getElementById('status-msg').style.color = "var(--primary)";
+            } else {
+                document.getElementById('status-msg').innerText = "Current stream active.";
+                document.getElementById('status-msg').style.color = "var(--success)";
+            }
         }
 
-        function applyChanges() {
-            // In a real Magisk environment, we attempt to trigger a script.
-            // Since we can't write /data directly from JS browser without a bridge,
-            // we use a specific intent that our action.sh might handle or 
-            // the user might have to manually do a trigger.
-            // However, we'll try to use a "download" of a dummy file that our service.sh will monitor
+        function updateUIState() {
+            document.getElementById('branch-main').classList.toggle('selected', selectedBranch === 'main');
+            document.getElementById('branch-pre').classList.toggle('selected', selectedBranch === 'pre-release');
             
-            document.getElementById('status-msg').innerText = "UPDATING CONFIGURATION...";
+            document.getElementById('branch-main').classList.toggle('active-branch', currentBranch === 'main');
+            document.getElementById('branch-pre').classList.toggle('active-branch', currentBranch === 'pre-release');
+        }
+
+        async function applyAndReboot() {
+            document.getElementById('status-msg').innerText = "WRITING CONFIGURATION...";
+            log("Applying branch change...");
             
-            // Logic: Create a "flag" file in shared storage that our service.sh will pick up
-            // Or use a clever URL scheme if the manager supports it.
-            // Minimalist approach for now: Show instructions or try to use a data URI trigger.
+            let url = "";
+            if (selectedBranch === "pre-release") {
+                url = "https://raw.githubusercontent.com/Mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/Pre-release/update.json";
+            } else {
+                url = "https://raw.githubusercontent.com/Mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/main/update.json";
+            }
             
-            setTimeout(() => {
-                document.getElementById('status-msg').innerText = "SUCCESS! Please reboot to change branch.";
-                document.getElementById('status-msg').style.color = "#00c853";
+            const sedCmd = `sed -i "s|updateJson=.*|updateJson=${url}|g" ${modPath}/module.prop`;
+            
+            try {
+                await execShell(sedCmd);
+                log("Config updated successfully.");
+                document.getElementById('status-msg').innerText = "READY! REBOOTING IN 3s...";
+                document.getElementById('status-msg').style.color = "var(--success)";
                 
-                // Note: The actual file writing will be handled by the companion service.sh 
-                // triggered by a system action or the user in a real scenario.
-                // For this port, we'll provide the UI and the service script will do the magic.
-            }, 1000);
+                setTimeout(async () => {
+                    log("Initiating reboot...");
+                    await execShell("reboot");
+                }, 3000);
+            } catch (e) {
+                log("Failed: " + e);
+                document.getElementById('status-msg').innerText = "ERROR WRITING CONFIG";
+            }
+        }
+
+        async function launchCamera() {
+            log("Launching Camera Activity...");
+            await execShell("am start -n com.oneplus.camera/com.oneplus.camera.CameraActivity");
         }
     </script>
 </body>

@@ -51,7 +51,7 @@ set_permissions() {
   ui_print "*   ╚██████╔╝██║     ╚██████╗██║  ██║██║ ╚═╝ ██║ *"
   ui_print "*    ╚═════╝ ╚═╝      ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝ *"
   ui_print "*                                           *"
-  ui_print "*    OnePlus Camera Port - v6.5.1 (Alpha)   *"
+  ui_print "*    OnePlus Camera Port - v6.5.3 (Alpha)   *"
   ui_print "*********************************************"
   ui_print "- Device: OnePlus 7 / 7 Pro / 7T / 7T Pro"
   ui_print "- Android: 14 / 15 / 16 (AOSP)"
@@ -74,7 +74,6 @@ set_permissions() {
 
   # Set permissions for scripts
   set_perm $MODPATH/action.sh 0 0 0755
-  set_perm $MODPATH/service.sh 0 0 0755
 
   # Set permissions for sepolicy
   ui_print "[#] Applying SEPolicy rules..."
