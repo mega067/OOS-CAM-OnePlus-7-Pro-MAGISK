@@ -51,7 +51,7 @@ set_permissions() {
   ui_print "*   ╚██████╔╝██║     ╚██████╗██║  ██║██║ ╚═╝ ██║ *"
   ui_print "*    ╚═════╝ ╚═╝      ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝ *"
   ui_print "*                                           *"
-  ui_print "*    OnePlus Camera Port - v6.4.11 (Alpha)  *"
+  ui_print "*    OnePlus Camera Port - v6.5.0 (Alpha)   *"
   ui_print "*********************************************"
   ui_print "- Device: OnePlus 7 / 7 Pro / 7T / 7T Pro"
   ui_print "- Android: 14 / 15 / 16 (AOSP)"
@@ -71,6 +71,10 @@ set_permissions() {
     ui_print "[#] Setting library permissions..."
     set_perm_recursive $MODPATH/system/priv-app/OnePlusCamera/lib 0 0 0755 0644
   fi
+
+  # Set permissions for scripts
+  set_perm $MODPATH/action.sh 0 0 0755
+  set_perm $MODPATH/service.sh 0 0 0755
 
   # Set permissions for sepolicy
   ui_print "[#] Applying SEPolicy rules..."
