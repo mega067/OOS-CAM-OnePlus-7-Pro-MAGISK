@@ -21,6 +21,8 @@
             --success: #00d45a;
             --success-dim: rgba(0, 212, 90, 0.12);
             --warning: #ffab00;
+            --warning-glow: rgba(255, 171, 0, 0.4);
+            --critical: #ff3d00;
         }
 
         * {
@@ -502,6 +504,68 @@
             color: var(--primary);
             font-weight: 700;
         }
+
+        /* ── Debug Specific ── */
+        .debug-status-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 171, 0, 0.05);
+            border: 1px dashed var(--warning);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        .debug-indicator {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            color: var(--warning);
+            font-weight: 900;
+        }
+
+        .recording .debug-indicator {
+            display: flex;
+        }
+
+        .rec-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--critical);
+            border-radius: 50%;
+            animation: recPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes recPulse {
+            0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 var(--critical); }
+            50%       { opacity: 0.5; transform: scale(1.2); box-shadow: 0 0 10px var(--critical); }
+        }
+
+        .btn-debug {
+            background: linear-gradient(135deg, var(--warning), #e69a00);
+            color: #000;
+            box-shadow: 0 4px 20px var(--warning-glow);
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, #444, #222);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .log-path {
+            font-family: 'Courier New', monospace;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            background: rgba(0,0,0,0.4);
+            padding: 6px 10px;
+            border-radius: 6px;
+            word-break: break-all;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body onload="init()">
@@ -522,6 +586,7 @@
         <nav class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'control')">CONTROL</button>
             <button class="tab-btn" onclick="openTab(event, 'updates')">UPDATES</button>
+            <button class="tab-btn" onclick="openTab(event, 'debug')">DEBUG</button>
         </nav>
 
         <!-- ── Control Tab ── -->
@@ -536,6 +601,41 @@
                     📂 View Repository
                 </a>
             </div>
+
+        <!-- ── Debug Tab ── -->
+        <div id="debug" class="tab-content">
+            <div class="card" id="debug-card">
+                <div class="card-title">🛡️ Diagnostic Engine</div>
+                <p style="margin-bottom: 18px; font-size: 0.82rem; color: var(--text-dim); line-height: 1.5;">
+                    Use this tool to capture a Logcat trace of camera crashes. The recording will continue in the background while you test.
+                </p>
+
+                <div class="debug-status-card">
+                    <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-dim);">Status</span>
+                    <div id="recording-status" class="debug-indicator">
+                        <span class="rec-dot"></span> RECORDING ACTIVE
+                    </div>
+                    <span id="idle-status" style="font-family: 'Orbitron', sans-serif; font-size: 0.7rem; color: var(--text-dim);">IDLE</span>
+                </div>
+
+                <div id="debug-actions">
+                    <button id="start-debug-btn" onclick="startDebugSession()" class="btn btn-debug">
+                        ⚡ Start Debug &amp; Launch
+                    </button>
+                    <button id="stop-debug-btn" onclick="stopDebugSession()" class="btn btn-stop" style="display: none;">
+                        🛑 Stop Recording
+                    </button>
+                </div>
+
+                <div class="log-path">
+                    Output: <code>/sdcard/Documents/opcam_debug.log</code>
+                </div>
+            </div>
+
+            <div class="card note-card">
+                <p>🔍 Logs are filtered to include system errors and camera-specific events for easier debugging.</p>
+            </div>
+        </div>
 
             <div id="console"></div>
 
@@ -754,6 +854,59 @@
             log("Launching OnePlus Camera...");
             // --user 0 prevents context errors when running as root
             await execShell("am start --user 0 -n com.oneplus.camera/com.oneplus.camera.CameraActivity");
+        }
+
+        /* ────────── Debug Session ────────── */
+        let isRecording = false;
+        const logPath = "/sdcard/Documents/opcam_debug.log";
+
+        async function startDebugSession() {
+            if (isRecording) return;
+            
+            log("🔧 Initializing Debug Session...");
+            setStatus("Starting Logcat...", "var(--warning)");
+            
+            // 1. Clear previous logs
+            await execShell("logcat -c");
+            
+            // 2. Start recording in background
+            // -v time: include timestamps
+            // -f: write to file
+            // & at the end to keep it background in shell
+            execShell(`logcat -v time -f ${logPath} &`);
+            
+            isRecording = true;
+            document.getElementById('debug-card').classList.add('recording');
+            document.getElementById('start-debug-btn').style.display = 'none';
+            document.getElementById('stop-debug-btn').style.display = 'flex';
+            document.getElementById('idle-status').style.display = 'none';
+            
+            log("📡 Recording started to " + logPath);
+            
+            // 3. Launch Camera
+            setTimeout(async () => {
+                await launchCamera();
+                setStatus("Recording... Test the Camera", "var(--warning)");
+            }, 1000);
+        }
+
+        async function stopDebugSession() {
+            if (!isRecording) return;
+            
+            log("💾 Finalizing Debug Session...");
+            setStatus("Stopping Logcat...", "var(--primary)");
+            
+            // Kill background logcat processes
+            await execShell("pkill -f logcat");
+            
+            isRecording = false;
+            document.getElementById('debug-card').classList.remove('recording');
+            document.getElementById('start-debug-btn').style.display = 'flex';
+            document.getElementById('stop-debug-btn').style.display = 'none';
+            document.getElementById('idle-status').style.display = 'block';
+            
+            log("✅ Log saved to " + logPath);
+            setStatus("Log Saved! Check your Documents.", "var(--success)");
         }
     </script>
 </body>
