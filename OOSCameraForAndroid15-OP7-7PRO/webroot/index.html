@@ -1,281 +1,522 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OP CAM Pro Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #eb0010;
-            --primary-glow: rgba(235, 0, 16, 0.5);
-            --bg: #0a0a0a;
-            --surface: rgba(30, 30, 30, 0.7);
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --text: #ffffff;
-            --text-dim: #b0b0b0;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --success: #00c853;
+            --primary-glow: rgba(235, 0, 16, 0.45);
+            --primary-dim: rgba(235, 0, 16, 0.12);
+            --bg: #080808;
+            --surface: rgba(25, 25, 25, 0.8);
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-hover: rgba(255, 255, 255, 0.07);
+            --text: #f0f0f0;
+            --text-dim: #909090;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.09);
+            --success: #00d45a;
+            --success-dim: rgba(0, 212, 90, 0.12);
+            --warning: #ffab00;
         }
 
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            margin: 0;
-            padding: 0;
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 10%, #2a0000 0%, #0a0a0a 100%);
             min-height: 100vh;
+            background-image:
+                radial-gradient(ellipse at 50% 0%, rgba(120, 0, 0, 0.35) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(80, 0, 0, 0.15) 0%, transparent 50%);
+        }
+
+        /* Subtle scanline overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,0,0,0.06) 2px,
+                rgba(0,0,0,0.06) 4px
+            );
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
+            position: relative;
+            z-index: 1;
             max-width: 500px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 20px 16px;
         }
 
+        /* ── Header ── */
         header {
             text-align: center;
-            padding: 40px 0 20px;
+            padding: 36px 0 24px;
+        }
+
+        .logo-wrap {
+            position: relative;
+            display: inline-block;
         }
 
         .logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 2.8rem;
+            font-weight: 900;
             color: var(--primary);
-            text-shadow: 0 0 20px var(--primary-glow);
-            margin: 0;
-            letter-spacing: 4px;
+            text-shadow: 0 0 25px var(--primary-glow), 0 0 60px rgba(235,0,16,0.2);
+            letter-spacing: 6px;
+            line-height: 1;
+            animation: logoPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { text-shadow: 0 0 25px var(--primary-glow), 0 0 60px rgba(235,0,16,0.2); }
+            50%       { text-shadow: 0 0 35px var(--primary-glow), 0 0 90px rgba(235,0,16,0.35); }
+        }
+
+        .logo-sub {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 6px;
+            color: var(--text-dim);
+            margin-top: 4px;
+            text-transform: uppercase;
         }
 
         .version-badge {
-            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
             color: var(--text-dim);
             letter-spacing: 2px;
-            margin-top: 5px;
+            margin-top: 10px;
             background: var(--glass);
-            padding: 4px 12px;
+            border: 1px solid var(--glass-border);
+            padding: 5px 14px;
             border-radius: 20px;
-            display: inline-block;
         }
 
-        /* Tabs Navigation */
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--primary);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.3; }
+        }
+
+        /* ── Tabs ── */
         .tabs-nav {
             display: flex;
             background: var(--surface);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 14px;
             padding: 5px;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
             border: 1px solid var(--glass-border);
+            gap: 4px;
         }
 
         .tab-btn {
             flex: 1;
-            padding: 12px;
+            padding: 11px 8px;
             border: none;
             background: transparent;
             color: var(--text-dim);
-            font-size: 0.9rem;
+            font-size: 0.78rem;
             font-weight: 700;
             cursor: pointer;
             border-radius: 10px;
             transition: all 0.3s ease;
             font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
         }
 
         .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 0 15px var(--primary-glow);
+            background: linear-gradient(135deg, var(--primary), #c8000d);
+            color: #fff;
+            box-shadow: 0 2px 18px var(--primary-glow);
         }
 
-        /* Tab Content */
+        /* ── Tab Content ── */
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeSlide 0.4s ease;
         }
 
         .tab-content.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Cards and Sections */
+        /* ── Cards ── */
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
+            padding: 22px;
+            margin-bottom: 18px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+            transition: border-color 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(255,255,255,0.14);
         }
 
         .card-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
+            gap: 8px;
             color: var(--primary);
+            text-transform: uppercase;
         }
 
-        /* Buttons */
+        .card-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--primary-dim), transparent);
+        }
+
+        /* ── Buttons ── */
         .btn {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
             width: 100%;
-            padding: 16px;
-            margin-bottom: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
             border: none;
             border-radius: 12px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.2s ease;
             cursor: pointer;
             font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-active {
-            background: linear-gradient(135deg, var(--primary), #ff4d4d);
-            color: white;
-            box-shadow: 0 5px 20px var(--primary-glow);
+        .btn::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
         }
 
-        .btn-active:active {
-            transform: scale(0.97);
+        .btn:active::after {
+            transform: scale(30);
+            opacity: 0;
+            transition: 0s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #eb0010, #b80010);
+            color: #fff;
+            box-shadow: 0 4px 20px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 30px var(--primary-glow);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97) translateY(0);
+            box-shadow: 0 2px 10px var(--primary-glow);
         }
 
         .btn-outline {
             background: transparent;
             border: 1px solid var(--glass-border);
             color: var(--text);
+            margin-bottom: 0;
         }
 
-        .btn-reboot {
+        .btn-outline:hover {
+            background: var(--glass);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .btn-apply {
             background: #ffffff;
-            color: #000000;
-            margin-top: 20px;
+            color: #0a0a0a;
+            margin-top: 18px;
+            margin-bottom: 0;
+            box-shadow: 0 4px 20px rgba(255,255,255,0.15);
         }
 
-        /* Branch Selection Styles */
+        .btn-apply:hover {
+            background: #e8e8e8;
+            box-shadow: 0 6px 28px rgba(255,255,255,0.25);
+            transform: translateY(-1px);
+        }
+
+        .btn-apply:active {
+            transform: scale(0.97);
+        }
+
+        /* ── Info Grid ── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .info-cell {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .info-cell-label {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .info-cell-value {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* ── Branch Options ── */
         .branch-option {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 15px;
+            background: rgba(255,255,255,0.025);
+            border-radius: 14px;
+            padding: 18px 18px 14px;
+            margin-bottom: 12px;
             border: 1px solid transparent;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
         }
 
+        .branch-option::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: transparent;
+            transition: background 0.3s;
+        }
+
+        .branch-option:hover {
+            background: rgba(255,255,255,0.045);
+            border-color: rgba(255,255,255,0.1);
+        }
+
         .branch-option.selected {
             border-color: var(--primary);
-            background: rgba(235, 0, 16, 0.1);
+            background: var(--primary-dim);
+        }
+
+        .branch-option.selected::before {
+            background: linear-gradient(to right, var(--primary), transparent);
         }
 
         .branch-option.active-branch {
             border-color: var(--success);
-            background: rgba(0, 200, 83, 0.1);
+            background: var(--success-dim);
+        }
+
+        .branch-option.active-branch::before {
+            background: linear-gradient(to right, var(--success), transparent);
+        }
+
+        /* Active dot pulse */
+        .active-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--success);
+            margin-right: 5px;
+            animation: dotPulse 1.5s ease-in-out infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { box-shadow: 0 0 5px var(--success); transform: scale(1); }
+            50%       { box-shadow: 0 0 12px var(--success); transform: scale(1.3); }
         }
 
         .current-label {
+            display: none;
             position: absolute;
             bottom: 10px;
-            right: 15px;
-            font-size: 0.65rem;
+            right: 12px;
+            font-size: 0.58rem;
             font-weight: 900;
             color: var(--success);
             text-transform: uppercase;
-            display: none;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .branch-option.active-branch .current-label {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .branch-option h3 {
-            margin: 0 0 5px;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            padding-right: 60px;
         }
 
         .branch-option p {
-            margin: 0;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-dim);
+            line-height: 1.4;
         }
 
         .badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 4px 8px;
+            top: 18px;
+            right: 16px;
+            padding: 3px 8px;
             border-radius: 6px;
-            font-size: 0.7rem;
+            font-size: 0.62rem;
             font-weight: 900;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .badge-stable { background: #00c853; color: white; }
-        .badge-alpha { background: #ffab00; color: white; }
+        .badge-stable { background: var(--success); color: #000; }
+        .badge-alpha  { background: var(--warning); color: #000; }
 
+        /* ── Status Message ── */
         .status-msg {
             text-align: center;
-            font-size: 0.85rem;
-            margin-top: 15px;
+            font-size: 0.8rem;
+            margin-top: 14px;
             color: var(--primary);
-            min-height: 1.2rem;
+            min-height: 1.1rem;
             font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            transition: color 0.3s;
         }
 
-        footer {
+        /* ── Console ── */
+        #console {
+            background: rgba(0,0,0,0.85);
+            color: #39ff14;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 12px 14px;
+            font-size: 0.72rem;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            max-height: 110px;
+            overflow-y: auto;
+            display: none;
+            border: 1px solid rgba(57,255,20,0.2);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 0 10px rgba(57,255,20,0.05);
+            line-height: 1.6;
+        }
+
+        #console::-webkit-scrollbar { width: 4px; }
+        #console::-webkit-scrollbar-thumb { background: rgba(57,255,20,0.3); border-radius: 4px; }
+
+        /* ── Note Card ── */
+        .note-card {
+            border-style: dashed !important;
+            opacity: 0.75;
+            padding: 14px !important;
+        }
+
+        .note-card p {
+            font-size: 0.72rem;
             text-align: center;
-            padding: 40px 0;
             color: var(--text-dim);
-            font-size: 0.8rem;
             line-height: 1.5;
         }
 
-        /* Terminal-like output */
-        #console {
-            background: #000;
-            color: #0f0;
-            font-family: 'Courier New', Courier, monospace;
-            padding: 10px;
-            font-size: 0.75rem;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            max-height: 100px;
-            overflow-y: auto;
-            display: none;
-            border: 1px solid #333;
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 36px 0 28px;
+            color: var(--text-dim);
+            font-size: 0.72rem;
+            line-height: 1.8;
         }
 
+        footer span {
+            color: var(--primary);
+            font-weight: 700;
+        }
     </style>
 </head>
 <body onload="init()">
 
     <div class="container">
+
         <header>
-            <h1 class="logo">OP CAM</h1>
-            <div class="version-badge">SERIES 7 | PRO | v6.5.3</div>
+            <div class="logo-wrap">
+                <div class="logo">OP CAM</div>
+                <div class="logo-sub">OnePlus Camera — AOSP Edition</div>
+            </div>
+            <div class="version-badge">
+                <span class="badge-dot"></span>
+                SERIES 7 PRO &nbsp;·&nbsp; v6.5.3
+            </div>
         </header>
 
         <nav class="tabs-nav">
@@ -283,192 +524,236 @@
             <button class="tab-btn" onclick="openTab(event, 'updates')">UPDATES</button>
         </nav>
 
-        <!-- Control Tab -->
+        <!-- ── Control Tab ── -->
         <div id="control" class="tab-content active">
+
             <div class="card">
-                <div class="card-title">🚀 QUICK ACTIONS</div>
-                <button onclick="launchCamera()" class="btn btn-active">
-                    📸 OPEN CAMERA
+                <div class="card-title">🚀 Quick Actions</div>
+                <button onclick="launchCamera()" class="btn btn-primary">
+                    📸 Open Camera
                 </button>
-                <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK" class="btn btn-outline">
-                    📂 VIEW REPOSITORY
+                <a href="https://github.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK" class="btn btn-outline" target="_blank">
+                    📂 View Repository
                 </a>
             </div>
 
             <div id="console"></div>
 
             <div class="card">
-                <div class="card-title">ℹ️ INFORMATION</div>
-                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-dim);">
-                    This port allows using the official OnePlus Camera on AOSP-based ROMs with dedicated optimizations for Android 16.
+                <div class="card-title">ℹ️ Module Info</div>
+                <p style="font-size: 0.85rem; line-height: 1.7; color: var(--text-dim);">
+                    This Magisk module ports the official OnePlus Camera app to AOSP-based ROMs, with dedicated optimizations for Android 16 and direct-root integration.
                 </p>
-                <div style="display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.8rem; color: var(--primary);">
-                    <span>VERSION: v6.5.3-alpha</span>
-                    <span>ENGINE: DIRECT-ROOT</span>
+                <div class="info-grid">
+                    <div class="info-cell">
+                        <div class="info-cell-label">Version</div>
+                        <div class="info-cell-value">v6.5.3-α</div>
+                    </div>
+                    <div class="info-cell">
+                        <div class="info-cell-label">Engine</div>
+                        <div class="info-cell-value">DIRECT ROOT</div>
+                    </div>
+                    <div class="info-cell">
+                        <div class="info-cell-label">Target</div>
+                        <div class="info-cell-value">Android 16</div>
+                    </div>
+                    <div class="info-cell">
+                        <div class="info-cell-label">Device</div>
+                        <div class="info-cell-value">OP 7 Pro</div>
+                    </div>
                 </div>
             </div>
+
         </div>
 
-        <!-- Updates Tab -->
+        <!-- ── Updates Tab ── -->
         <div id="updates" class="tab-content">
+
             <div class="card">
-                <div class="card-title">🛰️ UPDATE CHANNEL</div>
-                <p style="margin-bottom: 20px; font-size: 0.85rem;">Select your stream. Switching requires a device <b>REBOOT</b>.</p>
+                <div class="card-title">🛰️ Update Channel</div>
+                <p style="margin-bottom: 18px; font-size: 0.82rem; color: var(--text-dim); line-height: 1.5;">
+                    Select your update stream. Switching requires a device <strong style="color: var(--text);">reboot</strong> to take effect.
+                </p>
 
                 <div class="branch-option" id="branch-main" onclick="selectBranch('main')">
                     <span class="badge badge-stable">Stable</span>
-                    <h3>Latest (Main)</h3>
-                    <p>Verified updates, balanced stability.</p>
-                    <span class="current-label">● ACTIVE CHANNEL</span>
+                    <h3>Main — Latest</h3>
+                    <p>Verified builds with balanced stability and performance.</p>
+                    <span class="current-label"><span class="active-dot"></span> ACTIVE</span>
                 </div>
 
                 <div class="branch-option" id="branch-pre" onclick="selectBranch('pre-release')">
                     <span class="badge badge-alpha">Alpha</span>
                     <h3>Pre-release</h3>
-                    <p>Cutting-edge features and A16 fixes.</p>
-                    <span class="current-label">● ACTIVE CHANNEL</span>
+                    <p>Cutting-edge features, early Android 16 fixes.</p>
+                    <span class="current-label"><span class="active-dot"></span> ACTIVE</span>
                 </div>
 
-                <div id="status-msg" class="status-msg">Identifying current configuration...</div>
+                <div id="status-msg" class="status-msg">Identifying current config...</div>
 
-                <button id="apply-btn" class="btn btn-reboot" style="display: none;" onclick="applyAndReboot()">
-                    💾 APPLY & REBOOT NOW
+                <button id="apply-btn" class="btn btn-apply" style="display: none;" onclick="applyAndReboot()">
+                    💾 Apply &amp; Reboot Now
                 </button>
             </div>
-            
-            <div class="card" style="border-style: dashed; opacity: 0.8; padding: 15px;">
-                 <p style="font-size: 0.75rem; text-align: center; margin: 0; color: var(--text-dim);">
-                    Direct Root execution mode. Changes are written directly to module prop for immediate effect after reboot.
-                 </p>
+
+            <div class="card note-card">
+                <p>⚡ Direct Root mode — changes are written to <code>module.prop</code> and applied immediately after reboot.</p>
             </div>
+
         </div>
 
         <footer>
-            Modified by Mega067 & Antigravity<br>
-            OnePlus 7 Series AOSP Project
+            Modified by <span>Mega067</span> &amp; <span>Antigravity</span><br>
+            OnePlus 7 Series · AOSP Project
         </footer>
-    </div>
+
+    </div><!-- /container -->
 
     <script>
-        // Magisk WebUI Shell Bridge
         const modPath = "/data/adb/modules/OnePlusCamera";
-        let currentBranch = "main";
+        let currentBranch  = "main";
         let selectedBranch = "main";
+        let cbCounter = 0;
 
+        /**
+         * execShell — TrickyAddon-style named callback bridge.
+         * Works with: KSU WebUI (ksu.exec), MMRL / modern Magisk (magisk.exec with id),
+         * and classic Magisk managers (magisk.exec with function).
+         */
         function execShell(cmd) {
-            // Magisk WebUI standard execution
             return new Promise((resolve) => {
-                if (window.magisk) {
-                    window.magisk.exec(cmd, (res) => resolve(res));
+                const cbId = "op_cb_" + Date.now() + "_" + (cbCounter++);
+
+                // Register callback globally so the WebView bridge can invoke it by name
+                window[cbId] = (errno, stdout, stderr) => {
+                    delete window[cbId];
+
+                    // Some APIs pass a single result object instead of separate params
+                    if (typeof errno === 'object' && errno !== null) {
+                        stdout = errno.stdout;
+                        stderr = errno.stderr;
+                        errno  = errno.errno;
+                    }
+
+                    if (errno === 0 || errno === undefined) {
+                        resolve(stdout !== undefined ? stdout : "OK");
+                    } else {
+                        log("⚠️ Root error (" + errno + "): " + (stderr || ""));
+                        resolve("");
+                    }
+                };
+
+                if (typeof ksu !== 'undefined') {
+                    // KernelSU WebUI
+                    ksu.exec(cmd, "{}", cbId);
+
+                } else if (typeof magisk !== 'undefined') {
+                    try {
+                        // Modern MMRL / KSU-like managers
+                        magisk.exec(cmd, "{}", cbId);
+                    } catch (e) {
+                        // Fallback: classic managers that accept function callbacks directly
+                        delete window[cbId];
+                        magisk.exec(cmd, (res) => resolve(res));
+                    }
+
                 } else {
-                    // Fallback for some managers or testing
-                    console.log("Mock Shell Exec: " + cmd);
-                    // Try to use a hidden method if available
-                    fetch("/cgi-bin/exec?" + encodeURIComponent(cmd)).catch(e => {});
+                    log("❌ No root API detected. Open from MMRL, KsuWebUI, or a compatible manager.");
+                    delete window[cbId];
                     resolve("");
                 }
             });
         }
 
+        /* ────────── Init ────────── */
         async function init() {
-            log("Initializing Direct Root Bridge...");
-            
-            // Identify current branch from module.prop
+            log("Initialising WebUI...");
             try {
-                // Read updateJson line
                 const content = await execShell(`grep "updateJson" ${modPath}/module.prop`);
-                if (content.includes("Pre-release")) {
-                    currentBranch = "pre-release";
-                } else {
-                    currentBranch = "main";
-                }
-                
+                currentBranch  = (content && content.includes("Pre-release")) ? "pre-release" : "main";
                 selectedBranch = currentBranch;
                 updateUIState();
-                document.getElementById('status-msg').innerText = "Current stream: " + (currentBranch === 'main' ? 'Latest' : 'Pre-release');
-                document.getElementById('status-msg').style.color = "var(--text-dim)";
+                setStatus(
+                    "Stream: " + (currentBranch === 'main' ? 'Main (Stable)' : 'Pre-release (Alpha)'),
+                    "var(--text-dim)"
+                );
             } catch (e) {
                 log("Error reading config: " + e);
             }
         }
 
+        /* ────────── Logging ────────── */
         function log(msg) {
             const con = document.getElementById("console");
             con.style.display = "block";
-            con.innerHTML += "> " + msg + "<br>";
+            con.innerHTML += "<span style='color:#666'>&gt;</span> " + msg + "<br>";
             con.scrollTop = con.scrollHeight;
         }
 
+        /* ────────── Tab switching ────────── */
         function openTab(evt, tabName) {
-            var i, tabcontent, tabbtn;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            tabbtn = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tabbtn.length; i++) {
-                tabbtn[i].classList.remove("active");
-            }
+            document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
+            document.querySelectorAll(".tab-btn").forEach(el => el.classList.remove("active"));
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
 
+        /* ────────── Branch selection ────────── */
         function selectBranch(branch) {
             selectedBranch = branch;
             updateUIState();
-            
+
             const changed = selectedBranch !== currentBranch;
             document.getElementById('apply-btn').style.display = changed ? 'flex' : 'none';
-            
+
             if (changed) {
-                document.getElementById('status-msg').innerText = "Switching to " + (branch === 'pre-release' ? 'Pre-release' : 'Latest') + "...";
-                document.getElementById('status-msg').style.color = "var(--primary)";
+                setStatus(
+                    "Pending: switch to " + (branch === 'pre-release' ? 'Pre-release' : 'Main'),
+                    "var(--primary)"
+                );
             } else {
-                document.getElementById('status-msg').innerText = "Current stream active.";
-                document.getElementById('status-msg').style.color = "var(--success)";
+                setStatus("Current stream selected.", "var(--success)");
             }
         }
 
         function updateUIState() {
-            document.getElementById('branch-main').classList.toggle('selected', selectedBranch === 'main');
-            document.getElementById('branch-pre').classList.toggle('selected', selectedBranch === 'pre-release');
-            
-            document.getElementById('branch-main').classList.toggle('active-branch', currentBranch === 'main');
-            document.getElementById('branch-pre').classList.toggle('active-branch', currentBranch === 'pre-release');
+            document.getElementById('branch-main').classList.toggle('selected',     selectedBranch === 'main');
+            document.getElementById('branch-pre') .classList.toggle('selected',     selectedBranch === 'pre-release');
+            document.getElementById('branch-main').classList.toggle('active-branch', currentBranch  === 'main');
+            document.getElementById('branch-pre') .classList.toggle('active-branch', currentBranch  === 'pre-release');
         }
 
+        function setStatus(msg, color) {
+            const el = document.getElementById('status-msg');
+            el.innerText = msg;
+            el.style.color = color;
+        }
+
+        /* ────────── Apply & Reboot ────────── */
         async function applyAndReboot() {
-            document.getElementById('status-msg').innerText = "WRITING CONFIGURATION...";
-            log("Applying branch change...");
-            
-            let url = "";
-            if (selectedBranch === "pre-release") {
-                url = "https://raw.githubusercontent.com/Mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/Pre-release/update.json";
-            } else {
-                url = "https://raw.githubusercontent.com/Mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/main/update.json";
-            }
-            
-            const sedCmd = `sed -i "s|updateJson=.*|updateJson=${url}|g" ${modPath}/module.prop`;
-            
-            try {
-                await execShell(sedCmd);
-                log("Config updated successfully.");
-                document.getElementById('status-msg').innerText = "READY! REBOOTING IN 3s...";
-                document.getElementById('status-msg').style.color = "var(--success)";
-                
-                setTimeout(async () => {
-                    log("Initiating reboot...");
-                    await execShell("reboot");
-                }, 3000);
-            } catch (e) {
-                log("Failed: " + e);
-                document.getElementById('status-msg').innerText = "ERROR WRITING CONFIG";
-            }
+            setStatus("Writing configuration...", "var(--primary)");
+            log("Applying stream change...");
+
+            const url = selectedBranch === "pre-release"
+                ? "https://raw.githubusercontent.com/Mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/Pre-release/update.json"
+                : "https://raw.githubusercontent.com/Mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/main/update.json";
+
+            await execShell(`sed -i "s|updateJson=.*|updateJson=${url}|g" ${modPath}/module.prop`);
+
+            log("Config updated. Rebooting in 3 s...");
+            setStatus("Done! Rebooting in 3s...", "var(--success)");
+
+            setTimeout(async () => {
+                log("Sending reboot command...");
+                await execShell("/system/bin/reboot");
+            }, 3000);
         }
 
+        /* ────────── Launch Camera ────────── */
         async function launchCamera() {
-            log("Launching Camera Activity...");
-            await execShell("am start -n com.oneplus.camera/com.oneplus.camera.CameraActivity");
+            log("Launching OnePlus Camera...");
+            // --user 0 prevents context errors when running as root
+            await execShell("am start --user 0 -n com.oneplus.camera/com.oneplus.camera.CameraActivity");
         }
     </script>
 </body>
