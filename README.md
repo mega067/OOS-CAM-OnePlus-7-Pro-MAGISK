@@ -65,12 +65,11 @@ Besides the bugs listed below, the rest of the camera functions perfectly with g
 * **Portrait Mode:** Accurate edge detection and bokeh.
 * **Panorama:** Seamless stitching.
 * **Slow Motion & Time-Lapse:** Fully functional without issues.
-* **Video Recording:** Works perfectly via a workaround (see bugs below).
+* **Video Recording:** Fully functional on modern builds.
 * **Gallery Integration:** Native viewing and editing is now working.
 
 ### ⚠️ Known Bugs
-- **Video Tab Crash:** Switching to the dedicated Video tab will cause the app to crash. 
-  * *Workaround:* You can still record video normally by **pressing and holding the shutter button** while in the standard Photo tab.
+- **General Stability:** While most features work perfectly, please be aware that as an unofficial port, some minor errors or edge-case bugs may still occur.
 - **Telephoto Lens Issue:** Taking a photo at **3x zoom or higher** results in a completely green image. 
 
 ---
