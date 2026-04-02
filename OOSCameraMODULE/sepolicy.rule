@@ -15,3 +15,12 @@ allow priv_app adsp_file lnk_file { read getattr }
 # Permitir que el HAL de la cámara (procesos nativos como provider@2.4-se y op_wm) lean las librerías propietarias (.so) montadas desde el sistema.
 allow hal_camera_default system_file file { read open getattr execute map }
 allow hal_camera_default system_lib_file file { read open getattr execute map }
+
+# --- Permisos para el Servicio de Marca de Agua (MDM) ---
+# Permite a la app de cámara y al HAL encontrar y comunicarse con el servicio de Oplus
+allow priv_app vendor_hal_cameraMDM_hwservice hwservice_manager find
+allow hal_camera_default vendor_hal_cameraMDM_hwservice hwservice_manager find
+
+# Respaldo por si Android 16 clasifica el servicio como genérico
+allow priv_app default_android_hwservice hwservice_manager find
+allow priv_app hal_camera_hwservice hwservice_manager find

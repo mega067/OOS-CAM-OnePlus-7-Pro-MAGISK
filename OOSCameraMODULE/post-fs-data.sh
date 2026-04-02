@@ -3,8 +3,6 @@
 
 MODDIR=${0%/*}
 
-# Restaura el contexto de SELinux para media_profiles.xml
-restorecon -v /vendor/etc/media_profiles.xml
 
 # Fix for Watermark - Create necessary directory
 if [ ! -d "/data/vendor/camera/watermark" ]; then
