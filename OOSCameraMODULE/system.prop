@@ -1,4 +1,0 @@
-# OOS Camera Port - System Properties
-# Fix for auxiliary cameras (Telephoto/Wide) access
-vendor.camera.aux.packagelist=com.oneplus.camera,com.oneplus.gallery,com.oneplus.camera.service,com.android.settings
-persist.vendor.camera.privapp.list=com.oneplus.camera,com.oneplus.gallery,com.oneplus.camera.service
