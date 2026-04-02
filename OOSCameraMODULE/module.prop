@@ -1,0 +1,7 @@
+id=OnePlusCamera
+name=OP CAM 7.2.47 v7.5 (OnePlus 7 / Pro) 
+version=v7.5-Alpha
+versionCode=28
+author=Mega067 & Antigravity
+description=[AOSP] Professional OOS Camera Port for OnePlus 7 series. Ultra-clean Vendor build. Compatible with Android 16.
+updateJson=https://raw.githubusercontent.com/mega067/OOS-CAM-OnePlus-7-Pro-MAGISK/Pre-release/update.json

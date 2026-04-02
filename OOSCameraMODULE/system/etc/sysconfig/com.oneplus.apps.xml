@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- OnePlus Apps Sysconfig -->
+<!-- This config exempts the camera and gallery from power optimizations so they work properly -->
+<config>
+    <!-- Background Activity and Power Saving Exemptions for OnePlus Apps -->
+    <allow-in-power-save package="com.oneplus.camera" />
+    <allow-in-data-usage-save package="com.oneplus.camera" />
+    <allow-unthrottled-location package="com.oneplus.camera" />
+    
+    <allow-in-power-save package="com.oneplus.gallery" />
+    <allow-in-data-usage-save package="com.oneplus.gallery" />
+    
+    <allow-in-power-save package="com.oneplus.camera.service" />
+    <allow-in-data-usage-save package="com.oneplus.camera.service" />
+    <allow-unthrottled-location package="com.oneplus.camera.service" />
+    
+    <!-- System feature exemptions -->
+    <allow-hiddenapi-whitelisting package="com.oneplus.camera" />
+    <allow-hiddenapi-whitelisting package="com.oneplus.gallery" />
+</config>
