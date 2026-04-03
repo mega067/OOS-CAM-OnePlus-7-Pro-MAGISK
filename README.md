@@ -42,7 +42,7 @@ This Magisk module enables the native OxygenOS camera experience on AOSP-based C
 ### 📦 Included Applications
 The module now installs three core applications to ensure full stability and functionality:
 
-| <img src="media/logos/camera_round.png" width="100"> | <img src="media/logos/service_round.png" width="100"> | <img src="media/logos/gallery_round.png" width="100"> |
+| <img src="media/logos/camera_round.png" width="100"> | <img src="media/logos/service_round.png" width="100"> | <img src="media/logos/oneplus-gallery-logo.jpg" width="100"> |
 | :---: | :---: | :---: |
 | **OnePlus Camera** | **Camera Service** | **OnePlus Gallery** |
 | The main photography app | Essential background logic | Native media editor |
