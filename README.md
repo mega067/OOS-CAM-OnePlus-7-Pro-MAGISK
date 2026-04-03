@@ -79,7 +79,7 @@ Besides the bugs listed below, the rest of the camera functions perfectly with g
 <p align="center">
     <img src="media/screenshots/Screenshot_20260331-101933_Camera.png" alt="OOS Camera About Page" width="300" />
   <img src="media/screenshots/Screenshot_20260331-101723_Camera.png" alt="OOS Camera About Page" width="300" />
-    <img src="media/screenshots/Screenshot_20260331-101723_Camera.png" alt="OOS Camera About Page" width="300" />
+    <img src="media/screenshots/Screenshot_20260331-101657_Camera.png" alt="OOS Camera About Page" width="300" />
 </p>
 
 ---
