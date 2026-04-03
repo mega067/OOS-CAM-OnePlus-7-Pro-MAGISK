@@ -1,7 +1,7 @@
 # OOS Camera Port for OnePlus 7/7 Pro (Android 15 & 16)
 
 <p align="center">
-  <img src="OOSCameraForAndroid15-OP7-7PRO/banner.png" alt="OOS Camera Module Banner" width="450" />
+  <img src="OOSCameraMODULE/banner.png" alt="OOS Camera Module Banner" width="450" />
 </p>
 
 <p align="center">
